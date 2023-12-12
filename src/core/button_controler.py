@@ -5,8 +5,9 @@ from src.core.trainees import Trainees
 from src.core.workouts import Workouts
 from src.data.database_manager import DatabaseManager
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QColor
-from main_page_controller import MainPageController
+from menu_page_controller import MenuPageController
 from navbar_controller import NavbarController
+from list_of_trainees_controller import ListOfTraineesController
 import re
 
 
@@ -14,45 +15,50 @@ class ButtonController:
 
     def __init__(self, ui, main_win):
 
-        self.model = QStandardItemModel()
+        # self.model = QStandardItemModel()
         self.ui = ui
         self.main_win = main_win
         # navbar_controller
         self.navbar_controller = NavbarController(self.ui)
-
         # mainPage
-        self.main_page_controller = MainPageController(self.ui)
+        self.menu_page_controller = MenuPageController(self.ui)
+        self.list_of_trainees_controller = ListOfTraineesController(self.ui)
         self.connect_buttons()
         self.db_manager = DatabaseManager()
 
         self.trainee = Trainees('name', 'surname', 'email', '2000-01-01', 999999999, 'training_start_date', 99, 99, 99,
                                 99)
-        self.table_of_trainees = []
-        self.refresh_list_trainees()
+        self.table_of_trainees = self.list_of_trainees_controller.refresh_list_trainees(self.db_manager)
         self.num = 99
         self.list_of_exercises = []
         self.model_exercises = QStandardItemModel()
 
         print(self.trainee.select_all(self.db_manager))
 
-        self.refresh_list_trainees()
+        #self.refresh_list_trainees()
 
     def connect_buttons(self):
         # navbuttons
-        self.ui.menu_navbutton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.main_page))
-        self.ui.list_of_trainees_navbutton.clicked.connect(lambda: self.navbar_controller.open_page(self.ui.list_of_trainees_page))
-        self.ui.add_training_navbutton.clicked.connect(lambda: self.navbar_controller.open_page(self.ui.add_training_name))
+        self.ui.menu_navbutton.clicked.connect(
+            lambda: self.navbar_controller.open_page(self.ui.main_page))
+        self.ui.list_of_trainees_navbutton.clicked.connect(
+            lambda: self.navbar_controller.open_page(self.ui.list_of_trainees_page))
+        self.ui.add_training_navbutton.clicked.connect(
+            lambda: self.navbar_controller.open_page(self.ui.add_training_name))
         self.ui.generate_report_navbutton.clicked.connect(
             lambda: self.navbar_controller.open_page(self.ui.generate_report_page))
         # menu_buttons
-        self.ui.list_of_trainees_menu_button.clicked.connect(self.main_page_controller.open_list_of_trainees_page)
-        self.ui.add_trainee_menu_button.clicked.connect(self.open_add_training_name)
+        self.ui.list_of_trainees_menu_button.clicked.connect(
+            lambda: self.menu_page_controller.open_page(self.ui.list_of_trainees_page))
+        self.ui.add_trainee_menu_button.clicked.connect(
+            lambda: self.menu_page_controller.open_page(self.ui.add_trainee_page))
         self.ui.generate_report_menu_button.clicked.connect(
-            lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.generate_report_page))
+            lambda: self.menu_page_controller.open_page(self.ui.generate_report_page))
         # list_of_trainees_page
         self.ui.add_trainee_list_button.clicked.connect(
-            lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.add_trainee_page))
-        self.ui.refresh_button.clicked.connect(self.refresh_list_trainees)
+            lambda: self.list_of_trainees_controller.open_page(self.ui.add_trainee_page))
+        self.ui.refresh_button.clicked.connect(
+            lambda: self.list_of_trainees_controller.refresh_list_trainees(self.db_manager))
         self.ui.list_of_trainees.clicked.connect(self.open_trainee_page)
         # add_trainee_page
         self.ui.add_trainee_button.clicked.connect(self.add_trainee)
@@ -173,18 +179,18 @@ class ButtonController:
         self.ui.benchpress_dblabel.setText(str(self.trainee.benchpress))
         self.ui.deadlift_dblabel.setText(str(self.trainee.deadlift))
 
-    def refresh_list_trainees(self):
-        self.model.removeRows(0, self.model.rowCount())
-        self.table_of_trainees = self.trainee.select_all(self.db_manager)
-
-        for record in self.table_of_trainees:
-            item = QStandardItem(" ".join((record[1], record[2])))
-            self.model.appendRow(item)
-
-        self.ui.list_of_trainees.setModel(self.model)
+    # def refresh_list_trainees(self):
+    #     self.model.removeRows(0, self.model.rowCount())
+    #     self.table_of_trainees = self.trainee.select_all(self.db_manager)
+    #
+    #     for record in self.table_of_trainees:
+    #         item = QStandardItem(" ".join((record[1], record[2])))
+    #         self.model.appendRow(item)
+    #
+    #     self.ui.list_of_trainees.setModel(self.model)
 
     def open_add_training_name(self):
-        self.refresh_list_trainees()
+        self.list_of_trainees_controller.refresh_list_trainees(self.db_manager)
         for person in self.table_of_trainees:
             self.ui.choose_trainee_comboBox.addItem(f"{person[1]} {person[2]}")
         if self.trainee.name != 'name':
@@ -321,5 +327,5 @@ class ButtonController:
     def delete_trainee(self):
         self.trainee.delete_trainee_from_db(self.db_manager)
         print("usunięto")
-        self.refresh_list_trainees()
-        self.main_page_controller.open_list_of_trainees_page()
+        self.list_of_trainees_controller.refresh_list_trainees(self.db_manager)
+        self.menu_page_controller.open_page(self.ui.main_page)
