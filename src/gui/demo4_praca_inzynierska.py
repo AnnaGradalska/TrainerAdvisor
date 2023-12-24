@@ -669,32 +669,60 @@ class Ui_MainWindow(object):
         self.view_training_page.setObjectName("view_training_page")
         self.title_view_training_page = QtWidgets.QLabel(self.view_training_page)
         self.title_view_training_page.setGeometry(QtCore.QRect(70, 70, 301, 51))
+        self.title_training = QtWidgets.QLabel(self.view_training_page)
+        self.title_training.setGeometry(QtCore.QRect(70, 130, 301, 51))
         font = QtGui.QFont()
         font.setPointSize(22)
         font.setBold(True)
         self.title_view_training_page.setFont(font)
         self.title_view_training_page.setObjectName("title_view_training_page")
+        font.setPointSize(12)
+        self.title_training.setFont(font)
+        self.title_training.setObjectName("title_training")
         self.training_table = QtWidgets.QTableWidget(self.view_training_page)
-        self.training_table.setGeometry(QtCore.QRect(100, 130, 581, 331))
+        self.training_table.setGeometry(QtCore.QRect(100, 220, 628, 331))
         self.training_table.setObjectName("training_table")
         self.training_table.setColumnCount(0)
         self.training_table.setRowCount(0)
+
         headers = ['Nazwa ćwiczenia', 'Serie', 'Powtórzenia', 'Opis']
         self.training_table.setColumnCount(len(headers))
         self.training_table.setHorizontalHeaderLabels(headers)
-        self.training_table.setStyleSheet("color: black")
-        self.prev_report_button = QtWidgets.QPushButton(self.view_training_page)
-        self.prev_report_button.setGeometry(QtCore.QRect(660, 490, 41, 41))
-        self.prev_report_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+        self.training_table.setColumnWidth(1, 110)
+        self.training_table.setColumnWidth(2, 110)
+        self.training_table.setColumnWidth(3, 200)
+        self.training_table.setStyleSheet("""
+                     QTableWidget#training_table {
+                         background-color: rgba(255, 255, 255, 0);
+                         color: white;
+                         gridline-color: white;
+                         border: 0px solid white;
+                     }
+                     QTableWidget#training_table::item {
+                         background-color: rgba(255, 255, 255, 0);
+                         color: white;
+                     }
+                     QTableWidget#training_table QHeaderView::section {
+                         background-color: white;
+                         color: black;
+                     }
+                 """)
+
+
+
+
+        self.prev_training_button = QtWidgets.QPushButton(self.view_training_page)
+        self.prev_training_button.setGeometry(QtCore.QRect(660, 580, 41, 41))
+        self.prev_training_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;\n"
 "border-radius: 10px;")
-        self.prev_report_button.setObjectName("prev_report_button")
-        self.next_report_button = QtWidgets.QPushButton(self.view_training_page)
-        self.next_report_button.setGeometry(QtCore.QRect(710, 490, 41, 41))
-        self.next_report_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+        self.prev_training_button.setObjectName("prev_training_button")
+        self.next_training_button = QtWidgets.QPushButton(self.view_training_page)
+        self.next_training_button.setGeometry(QtCore.QRect(710, 580, 41, 41))
+        self.next_training_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;\n"
 "border-radius: 10px;")
-        self.next_report_button.setObjectName("next_report_button")
+        self.next_training_button.setObjectName("next_training_button")
         self.stackedWidget.addWidget(self.view_training_page)
         self.view_trainee_page = QtWidgets.QWidget()
         self.view_trainee_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
@@ -1193,8 +1221,9 @@ class Ui_MainWindow(object):
         self.title_desc_label.setText(_translate("MainWindow", "DODATKOWE INFO"))
         self.save_report.setText(_translate("MainWindow", "ZAPISZ RAPORT"))
         self.title_view_training_page.setText(_translate("MainWindow", "PODGLĄD TRENINGU"))
-        self.prev_report_button.setText(_translate("MainWindow", "<-"))
-        self.next_report_button.setText(_translate("MainWindow", "->"))
+        self.title_training.setText(_translate("MainWindow", "*****"))
+        self.prev_training_button.setText(_translate("MainWindow", "<-"))
+        self.next_training_button.setText(_translate("MainWindow", "->"))
         self.email_label_2.setText(_translate("MainWindow", "Email"))
         self.benchpress_label_2.setText(_translate("MainWindow", "Wyciskanie leżąc"))
         self.benchpress_kg_label_2.setText(_translate("MainWindow", "kg"))

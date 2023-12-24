@@ -43,7 +43,19 @@ class Workouts:
         """
         db_manager.delete_data('workouts', self.id)
 
-    def get_workout_from_db(self, db_manager):
+    # def get_workout_from_db(self, db_manager):
+    #     """
+    #     Retrieve workout data from the database.
+    #
+    #     :param db_manager: DatabaseManager object for handling database operations.
+    #     :return: A list of tuples containing the retrieved workout data.
+    #              Each tuple represents a row in the 'workouts' table.
+    #              Returns an empty list if no data is found.
+    #     """
+    #     return db_manager.get_data(self.TABLE_NAME, "wor_id", self.id)
+
+    @staticmethod
+    def get_workout_from_db_by_id(db_manager, id):
         """
         Retrieve workout data from the database.
 
@@ -52,7 +64,7 @@ class Workouts:
                  Each tuple represents a row in the 'workouts' table.
                  Returns an empty list if no data is found.
         """
-        return db_manager.get_data(self.TABLE_NAME, "wor_id", self.id)
+        return db_manager.get_data(Workouts.TABLE_NAME, "wor_id", id)
 
 
     def get_workouts_for_trainee_from_db(self, trainee_id):

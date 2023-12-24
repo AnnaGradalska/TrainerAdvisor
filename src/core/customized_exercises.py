@@ -72,7 +72,7 @@ class CustomizedExercises:
         return db_manager.get_data(self.TABLE_NAME, self.id)
 
     @staticmethod
-    def get_customized_exercises_for_trainee(values):
-        db_manager = DatabaseManager()
+    def get_customized_exercises_for_trainee(values, db_manager):
+        #db_manager = DatabaseManager()
 
         return db_manager.get_data(CustomizedExercises.TABLE_NAME, "cus_wor_id", values)

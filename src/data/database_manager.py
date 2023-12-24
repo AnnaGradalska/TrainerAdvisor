@@ -139,7 +139,11 @@ class DatabaseManager:
             :return: A list of tuples containing the retrieved data. Each tuple represents a row in the table.
                      Returns an empty list if no data is found.
             """
+        if not isinstance(ids, list):
+            ids = [ids]
+
         placeholders = ', '.join('?' * len(ids))
+
         query = f"SELECT * FROM {table_name} WHERE {name_of_field_id} IN ({placeholders})"
 
         self.cur.execute(query, tuple(ids))

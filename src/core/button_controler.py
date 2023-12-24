@@ -27,6 +27,7 @@ class ButtonController:
         self.ui = ui
         self.main_win = main_win
         self.button_event_mappings = {}
+        self.db_manager = DatabaseManager()
         # navbar_controller
         self.navbar_controller = NavbarController(self.ui)
         # mainPage
@@ -36,10 +37,10 @@ class ButtonController:
         self.view_trainee_page_controller = ViewTraineePageController(self.ui)
         self.add_training_name_controller = AddTrainingNameController(self.ui)
         self.add_training_page_controller = AddTrainingPageController(self.ui)
-        self.view_training_page_controller = ViewTrainingPageController(self.ui)
+        self.view_training_page_controller = ViewTrainingPageController(self.ui, self.db_manager)
         self.generate_report_page_controller = GenerateReportPageController(self.main_win)
         self.connect_buttons()
-        self.db_manager = DatabaseManager()
+
 
         self.trainee = Trainees('name', 'surname', 'email', '2000-01-01', 999999999, 'training_start_date', 99, 99, 99,
                                 99)
@@ -78,6 +79,7 @@ class ButtonController:
         self.connect_add_training_page_buttons()
         self.connect_generate_report_page_buttons()
         self.connect_add_trainee_page_buttons()
+        self.connect_view_training_page_buttons()
 
 
     def connect_nav_buttons(self):
@@ -109,7 +111,7 @@ class ButtonController:
     def connect_view_trainee_page_buttons(self):
         self.ui.add_training_trainee_button.clicked.connect(self.open_add_training_name)
         self.ui.show_training_trainee_button.clicked.connect(
-            lambda: self.view_training_page_controller.open_view_training_page(self.trainee, self.workout, self.db_manager))
+            lambda: self.view_training_page_controller.open_view_training_page(self.trainee, self.workout))
         self.ui.delete_trainee_button.clicked.connect(
             lambda: self.view_trainee_page_controller.delete_trainee(self.db_manager))
 
@@ -130,6 +132,10 @@ class ButtonController:
             self.view_trainee_page_controller.open_view_trainee_page
         ])
         self.ui.add_trainee_button.clicked.connect(lambda: self.handle_button_event('add_trainee_button'))
+
+    def connect_view_training_page_buttons(self):
+        self.ui.prev_training_button.clicked.connect(self.view_training_page_controller.show_prev_training)
+        self.ui.next_training_button.clicked.connect(self.view_training_page_controller.show_next_training)
 
     def open_trainee_page(self):
         selected_index = self.ui.list_of_trainees.currentIndex().row()
@@ -175,7 +181,7 @@ class ButtonController:
 
     def add_training(self):
         self.add_training_page_controller.add_training(self.db_manager, self.workout)
-        self.view_training_page_controller.open_view_training_page(self.trainee, self.workout, self.db_manager)
+        self.view_training_page_controller.open_view_training_page(self.trainee, self.workout)
 
 
 
