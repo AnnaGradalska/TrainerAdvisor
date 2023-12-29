@@ -606,7 +606,7 @@ class Ui_MainWindow(object):
         self.title_generate_report_page.setFont(font)
         self.title_generate_report_page.setObjectName("title_generate_report_page")
         self.add_photos_button = QtWidgets.QPushButton(self.generate_report_page)
-        self.add_photos_button.setGeometry(QtCore.QRect(340, 190, 171, 251))
+        self.add_photos_button.setGeometry(QtCore.QRect(440, 190, 171, 251))
         font = QtGui.QFont()
         font.setPointSize(48)
         font.setBold(True)
@@ -615,6 +615,16 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "border-radius: 10px;")
         self.add_photos_button.setObjectName("add_photos_button")
+        self.add_film_button = QtWidgets.QPushButton(self.generate_report_page)
+        self.add_film_button.setGeometry(QtCore.QRect(140, 190, 171, 251))
+        font = QtGui.QFont()
+        font.setPointSize(48)
+        font.setBold(True)
+        self.add_film_button.setFont(font)
+        self.add_film_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+"border: 0px;\n"
+"border-radius: 10px;")
+        self.add_film_button.setObjectName("add_film_button")
         self.stackedWidget.addWidget(self.generate_report_page)
         self.report_photos_page = QtWidgets.QWidget()
         self.report_photos_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
@@ -663,6 +673,55 @@ class Ui_MainWindow(object):
         self.desc_label.setGeometry(QtCore.QRect(340, 130, 401, 301))
         self.desc_label.setObjectName("desc_label")
         self.stackedWidget.addWidget(self.report_photos_page)
+        #...
+        self.report_page = QtWidgets.QWidget()
+        self.report_page.setObjectName("report_page")
+        self.report_photo = QtWidgets.QLabel(self.report_page)
+        self.report_photo.setGeometry(QtCore.QRect(20, 30, 391, 531))
+        self.report_photo.setObjectName("report_photo")
+        self.report_comment = QtWidgets.QPlainTextEdit(self.report_page)
+        self.report_comment.setGeometry(QtCore.QRect(480, 110, 331, 421))
+        self.report_comment.setObjectName("report_comment")
+        self.label_15 = QtWidgets.QLabel(self.report_page)
+        self.label_15.setGeometry(QtCore.QRect(490, 50, 201, 41))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        self.label_15.setFont(font)
+        self.label_15.setStyleSheet("color: white;")
+        self.label_15.setObjectName("label_15")
+        self.prev_photo_button = QtWidgets.QPushButton(self.report_page)
+        self.prev_photo_button.setGeometry(QtCore.QRect(180, 570, 41, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.prev_photo_button.setFont(font)
+        self.prev_photo_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                             "border: 0px;\n"
+                                             "border-radius: 10px;\n"
+                                             "color: white;")
+        self.prev_photo_button.setObjectName("prev_photo_button")
+        self.next_photo_button = QtWidgets.QPushButton(self.report_page)
+        self.next_photo_button.setGeometry(QtCore.QRect(230, 570, 41, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.next_photo_button.setFont(font)
+        self.next_photo_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                             "border: 0px;\n"
+                                             "border-radius: 10px;\n"
+                                             "color: white;")
+        self.next_photo_button.setObjectName("next_photo_button")
+        self.pushButton = QtWidgets.QPushButton(self.report_page)
+        self.pushButton.setGeometry(QtCore.QRect(650, 570, 161, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                      "border: 0px;\n"
+                                      "border-radius: 10px;\n"
+                                      "color: white;")
+        self.pushButton.setObjectName("pushButton")
+        self.stackedWidget.addWidget(self.report_page)
+        #...
         self.view_training_page = QtWidgets.QWidget()
         self.view_training_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
 "color: white;")
@@ -891,6 +950,20 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "border-radius: 10px;")
         self.add_training_trainee_button.setObjectName("add_training_trainee_button")
+        self.render_film_button = QtWidgets.QPushButton(self.generate_report_page)
+        self.render_film_button.setGeometry(QtCore.QRect(140, 470, 191, 41))
+        self.render_film_button.setFont(font)
+        self.render_film_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                                       "border: 0px;\n"
+                                                       "border-radius: 10px;")
+        self.render_film_button.setObjectName("render_film_button")
+        self.render_photos_button = QtWidgets.QPushButton(self.generate_report_page)
+        self.render_photos_button.setGeometry(QtCore.QRect(440, 470, 191, 41))
+        self.render_photos_button.setFont(font)
+        self.render_photos_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                              "border: 0px;\n"
+                                              "border-radius: 10px;")
+        self.render_photos_button.setObjectName("render_photos_button")
         self.show_training_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
         self.show_training_trainee_button.setGeometry(QtCore.QRect(530, 420, 191, 41))
         font = QtGui.QFont()
@@ -1215,8 +1288,14 @@ class Ui_MainWindow(object):
         self.squat_kg_label_3.setText(_translate("MainWindow", "kg"))
         self.add_trainee_button.setText(_translate("MainWindow", "+"))
         self.title_generate_report_page.setText(_translate("MainWindow", "GENERUJ RAPORT"))
+        self.add_film_button.setText(_translate("MainWindow", "+"))
         self.add_photos_button.setText(_translate("MainWindow", "+"))
         self.photo_label.setText(_translate("MainWindow", "TextLabel"))
+        self.report_photo.setText(_translate("MainWindow", "TextLabel"))
+        self.label_15.setText(_translate("MainWindow", "Komentarz"))
+        self.prev_photo_button.setText(_translate("MainWindow", "<-"))
+        self.next_photo_button.setText(_translate("MainWindow", "->"))
+        self.pushButton.setText(_translate("MainWindow", "Zapisz raport w PDF"))
         self.title_label.setText(_translate("MainWindow", "RAPORT"))
         self.title_desc_label.setText(_translate("MainWindow", "DODATKOWE INFO"))
         self.save_report.setText(_translate("MainWindow", "ZAPISZ RAPORT"))
@@ -1248,6 +1327,8 @@ class Ui_MainWindow(object):
         self.deadlift_dblabel.setText(_translate("MainWindow", "*ciąg*"))
         self.deadlift_kg_label_3.setText(_translate("MainWindow", "kg"))
         self.add_training_trainee_button.setText(_translate("MainWindow", "+ DODAJ TRENING"))
+        self.render_film_button.setText(_translate("MainWindow", "Renderuj film"))
+        self.render_photos_button.setText(_translate("MainWindow", "Renderuj zdjęcia"))
         self.show_training_trainee_button.setText(_translate("MainWindow", "PODGLĄD TRENINGU"))
         self.title_add_trainig_page.setText(_translate("MainWindow", "WYPEŁNIJ DANE"))
         self.number_of_reps_lineEdit.setPlaceholderText(_translate("MainWindow", "6"))

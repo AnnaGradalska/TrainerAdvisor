@@ -38,7 +38,7 @@ class ButtonController:
         self.add_training_name_controller = AddTrainingNameController(self.ui)
         self.add_training_page_controller = AddTrainingPageController(self.ui)
         self.view_training_page_controller = ViewTrainingPageController(self.ui, self.db_manager)
-        self.generate_report_page_controller = GenerateReportPageController(self.main_win)
+        self.generate_report_page_controller = GenerateReportPageController(self.main_win, self.ui)
         self.connect_buttons()
 
 
@@ -80,6 +80,7 @@ class ButtonController:
         self.connect_generate_report_page_buttons()
         self.connect_add_trainee_page_buttons()
         self.connect_view_training_page_buttons()
+        self.connect_report_page_buttons()
 
 
     def connect_nav_buttons(self):
@@ -123,7 +124,10 @@ class ButtonController:
         self.ui.add_training_button.clicked.connect(self.add_training)
 
     def connect_generate_report_page_buttons(self):
-        self.ui.add_photos_button.clicked.connect(self.generate_report_page_controller.choose_picture)
+        self.ui.add_film_button.clicked.connect(self.generate_report_page_controller.open_film)
+        self.ui.add_photos_button.clicked.connect(self.generate_report_page_controller.open_photos)
+        self.ui.render_film_button.clicked.connect(self.generate_report_page_controller.generate_report_film)
+        self.ui.render_photos_button.clicked.connect(self.generate_report_page_controller.generate_report_photos)
 
     def connect_add_trainee_page_buttons(self):
         self.map_button_event('add_trainee_button', [
@@ -136,6 +140,10 @@ class ButtonController:
     def connect_view_training_page_buttons(self):
         self.ui.prev_training_button.clicked.connect(self.view_training_page_controller.show_prev_training)
         self.ui.next_training_button.clicked.connect(self.view_training_page_controller.show_next_training)
+
+    def connect_report_page_buttons(self):
+        self.ui.next_photo_button.clicked.connect(self.generate_report_page_controller.next_photo)
+        self.ui.prev_photo_button.clicked.connect(self.generate_report_page_controller.prev_photo)
 
     def open_trainee_page(self):
         selected_index = self.ui.list_of_trainees.currentIndex().row()
@@ -182,6 +190,7 @@ class ButtonController:
     def add_training(self):
         self.add_training_page_controller.add_training(self.db_manager, self.workout)
         self.view_training_page_controller.open_view_training_page(self.trainee, self.workout)
+
 
 
 
