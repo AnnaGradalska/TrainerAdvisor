@@ -15,7 +15,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1082, 750)
+        MainWindow.setFixedSize(1082, 750)
         MainWindow.setAutoFillBackground(False)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("background-color: #272727")
@@ -38,7 +38,7 @@ class Ui_MainWindow(object):
 "padding-left: 31px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/list.png);\n"
+"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/list.png);\n"
 "qproperty-iconSize: 20px;\n"
 "")
         self.list_of_trainees_navbutton.setObjectName("list_of_trainees_navbutton")
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
 "padding-left: 30px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/add_training.png);\n"
+"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/add_training.png);\n"
 "qproperty-iconSize: 25px;")
         self.add_training_navbutton.setObjectName("add_training_navbutton")
         self.generate_report_navbutton = QtWidgets.QPushButton(self.frame_top_menus)
@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
 "padding-left: 34px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/report.png);\n"
+"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/report.png);\n"
 "qproperty-iconSize: 21px;\n"
 "")
         self.generate_report_navbutton.setObjectName("generate_report_navbutton")
@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
 "padding-left: 30px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/home.png);\n"
+"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/home.png);\n"
 "qproperty-iconSize: 20px;")
         icon = QtGui.QIcon.fromTheme("application-exit")
         self.menu_navbutton.setIcon(icon)
@@ -140,13 +140,13 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.label_3 = QtWidgets.QLabel(self.frame_3)
         self.label_3.setGeometry(QtCore.QRect(320, 20, 451, 151))
-        self.label_3.setStyleSheet("background-image: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave1.png);")
+        self.label_3.setStyleSheet("background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave1.png);")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.frame_3)
         self.label_4.setGeometry(QtCore.QRect(400, 10, 361, 131))
         self.label_4.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"background-image: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave2.png);\n"
+"background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave2.png);\n"
 "border: 0px;")
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
@@ -181,7 +181,7 @@ class Ui_MainWindow(object):
         self.label_6.setObjectName("label_6")
         self.list_of_trainees_menu_button = QtWidgets.QPushButton(self.frame_4)
         self.list_of_trainees_menu_button.setGeometry(QtCore.QRect(220, 133, 101, 41))
-        self.list_of_trainees_menu_button.setStyleSheet("qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
+        self.list_of_trainees_menu_button.setStyleSheet("qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
 "qproperty-iconSize: 20px;\n"
 "background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;")
@@ -218,7 +218,7 @@ class Ui_MainWindow(object):
         self.label_8.setObjectName("label_8")
         self.add_trainee_menu_button = QtWidgets.QPushButton(self.frame_5)
         self.add_trainee_menu_button.setGeometry(QtCore.QRect(220, 133, 101, 41))
-        self.add_trainee_menu_button.setStyleSheet("qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
+        self.add_trainee_menu_button.setStyleSheet("qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
 "qproperty-iconSize: 20px;\n"
 "background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;")
@@ -257,7 +257,7 @@ class Ui_MainWindow(object):
         self.label_11.setObjectName("label_11")
         self.generate_report_menu_button = QtWidgets.QPushButton(self.frame_6)
         self.generate_report_menu_button.setGeometry(QtCore.QRect(600, 60, 101, 41))
-        self.generate_report_menu_button.setStyleSheet("qproperty-icon: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
+        self.generate_report_menu_button.setStyleSheet("qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
 "qproperty-iconSize: 20px;\n"
 "background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;")
@@ -278,7 +278,7 @@ class Ui_MainWindow(object):
         self.label_13.setGeometry(QtCore.QRect(-50, 0, 501, 131))
         self.label_13.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label_13.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"background-image: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave3_1.png);\n"
+"background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave3_1.png);\n"
 "border: 0px;")
         self.label_13.setText("")
         self.label_13.setObjectName("label_13")
@@ -556,12 +556,12 @@ class Ui_MainWindow(object):
         self.add_trainee_button.setObjectName("add_trainee_button")
         self.label_7 = QtWidgets.QLabel(self.add_trainee_page)
         self.label_7.setGeometry(QtCore.QRect(340, 500, 531, 161))
-        self.label_7.setStyleSheet("background-image: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave1.png);")
+        self.label_7.setStyleSheet("background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave1.png);")
         self.label_7.setText("")
         self.label_7.setObjectName("label_7")
         self.label_14 = QtWidgets.QLabel(self.add_trainee_page)
         self.label_14.setGeometry(QtCore.QRect(0, 540, 491, 111))
-        self.label_14.setStyleSheet("background-image: url(:/nowyPrzedrostek/D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave3_1.png);")
+        self.label_14.setStyleSheet("background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave3_1.png);")
         self.label_14.setText("")
         self.label_14.setObjectName("label_14")
         self.name_lineEdit.raise_()
@@ -626,54 +626,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px;")
         self.add_film_button.setObjectName("add_film_button")
         self.stackedWidget.addWidget(self.generate_report_page)
-        self.report_photos_page = QtWidgets.QWidget()
-        self.report_photos_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
-"color: white;")
-        self.report_photos_page.setObjectName("report_photos_page")
-        self.photo_label = QtWidgets.QLabel(self.report_photos_page)
-        self.photo_label.setGeometry(QtCore.QRect(70, 130, 221, 341))
-        self.photo_label.setObjectName("photo_label")
-        self.title_label = QtWidgets.QLabel(self.report_photos_page)
-        self.title_label.setGeometry(QtCore.QRect(70, 70, 151, 51))
-        font = QtGui.QFont()
-        font.setPointSize(24)
-        font.setBold(True)
-        self.title_label.setFont(font)
-        self.title_label.setObjectName("title_label")
-        self.title_desc_label = QtWidgets.QLabel(self.report_photos_page)
-        self.title_desc_label.setGeometry(QtCore.QRect(340, 80, 211, 41))
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        font.setBold(True)
-        self.title_desc_label.setFont(font)
-        self.title_desc_label.setObjectName("title_desc_label")
-        self.next_button = QtWidgets.QPushButton(self.report_photos_page)
-        self.next_button.setGeometry(QtCore.QRect(660, 470, 81, 51))
-        font = QtGui.QFont()
-        font.setPointSize(24)
-        self.next_button.setFont(font)
-        self.next_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
-"border: 0px;\n"
-"border-radius: 10px;")
-        self.next_button.setText("")
-        icon = QtGui.QIcon.fromTheme("accessories-calculator")
-        self.next_button.setIcon(icon)
-        self.next_button.setObjectName("next_button")
-        self.save_report = QtWidgets.QPushButton(self.report_photos_page)
-        self.save_report.setGeometry(QtCore.QRect(460, 470, 181, 51))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        font.setBold(True)
-        self.save_report.setFont(font)
-        self.save_report.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
-"border: 0px;\n"
-"border-radius: 10px;")
-        self.save_report.setObjectName("save_report")
-        self.desc_label = QtWidgets.QPlainTextEdit(self.report_photos_page)
-        self.desc_label.setGeometry(QtCore.QRect(340, 130, 401, 301))
-        self.desc_label.setObjectName("desc_label")
-        self.stackedWidget.addWidget(self.report_photos_page)
-        #...
+
         self.report_page = QtWidgets.QWidget()
         self.report_page.setObjectName("report_page")
         self.report_photo = QtWidgets.QLabel(self.report_page)
@@ -710,16 +663,16 @@ class Ui_MainWindow(object):
                                              "border-radius: 10px;\n"
                                              "color: white;")
         self.next_photo_button.setObjectName("next_photo_button")
-        self.pushButton = QtWidgets.QPushButton(self.report_page)
-        self.pushButton.setGeometry(QtCore.QRect(650, 570, 161, 41))
+        self.save_report = QtWidgets.QPushButton(self.report_page)
+        self.save_report.setGeometry(QtCore.QRect(650, 570, 161, 41))
         font = QtGui.QFont()
         font.setBold(True)
-        self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+        self.save_report.setFont(font)
+        self.save_report.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
                                       "border: 0px;\n"
                                       "border-radius: 10px;\n"
                                       "color: white;")
-        self.pushButton.setObjectName("pushButton")
+        self.save_report.setObjectName("pushButton")
         self.stackedWidget.addWidget(self.report_page)
         #...
         self.view_training_page = QtWidgets.QWidget()
@@ -950,12 +903,18 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "border-radius: 10px;")
         self.add_training_trainee_button.setObjectName("add_training_trainee_button")
+        font.setPointSize(11)
         self.render_film_button = QtWidgets.QPushButton(self.generate_report_page)
         self.render_film_button.setGeometry(QtCore.QRect(140, 470, 191, 41))
         self.render_film_button.setFont(font)
-        self.render_film_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
-                                                       "border: 0px;\n"
-                                                       "border-radius: 10px;")
+        self.render_film_button.setStyleSheet("QPushButton:disabled { background-color: rgba(90, 90, 90, 130);"
+                                              "color: rgba(150, 150, 150, 255);"
+                                              "border: 0px;"
+                                              "border-radius: 10px; }"
+                                              "QPushButton:checked { background-color: rgba(30, 29, 29, 130);"
+                                              "border: 0px;"
+                                              "border-radius: 10px; }")
+
         self.render_film_button.setObjectName("render_film_button")
         self.render_photos_button = QtWidgets.QPushButton(self.generate_report_page)
         self.render_photos_button.setGeometry(QtCore.QRect(440, 470, 191, 41))
@@ -964,6 +923,13 @@ class Ui_MainWindow(object):
                                               "border: 0px;\n"
                                               "border-radius: 10px;")
         self.render_photos_button.setObjectName("render_photos_button")
+        self.render_photos_button.setStyleSheet("QPushButton:disabled { background-color: rgba(90, 90, 90, 130);"
+                                              "color: rgba(150, 150, 150, 255);"
+                                              "border: 0px;"
+                                              "border-radius: 10px; }"
+                                              "QPushButton:checked { background-color: rgba(30, 29, 29, 130);"
+                                              "border: 0px;"
+                                              "border-radius: 10px; }")
         self.show_training_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
         self.show_training_trainee_button.setGeometry(QtCore.QRect(530, 420, 191, 41))
         font = QtGui.QFont()
@@ -1181,10 +1147,10 @@ class Ui_MainWindow(object):
         self.list_of_trainees = QtWidgets.QListView(self.list_of_trainees_page)
         self.list_of_trainees.setGeometry(QtCore.QRect(230, 190, 381, 281))
         self.list_of_trainees.setStyleSheet("background-color: rgb(71, 71, 71);\n"
-"color: rgb(214, 242, 222);")
+"color: rgb(255, 255, 255);")
         self.list_of_trainees.setObjectName("list_of_trainees")
         self.title_list = QtWidgets.QLabel(self.list_of_trainees_page)
-        self.title_list.setGeometry(QtCore.QRect(70, 70, 341, 41))
+        self.title_list.setGeometry(QtCore.QRect(70, 70, 360, 41))
         font = QtGui.QFont()
         font.setPointSize(22)
         font.setBold(True)
@@ -1290,15 +1256,11 @@ class Ui_MainWindow(object):
         self.title_generate_report_page.setText(_translate("MainWindow", "GENERUJ RAPORT"))
         self.add_film_button.setText(_translate("MainWindow", "+"))
         self.add_photos_button.setText(_translate("MainWindow", "+"))
-        self.photo_label.setText(_translate("MainWindow", "TextLabel"))
         self.report_photo.setText(_translate("MainWindow", "TextLabel"))
         self.label_15.setText(_translate("MainWindow", "Komentarz"))
         self.prev_photo_button.setText(_translate("MainWindow", "<-"))
         self.next_photo_button.setText(_translate("MainWindow", "->"))
-        self.pushButton.setText(_translate("MainWindow", "Zapisz raport w PDF"))
-        self.title_label.setText(_translate("MainWindow", "RAPORT"))
-        self.title_desc_label.setText(_translate("MainWindow", "DODATKOWE INFO"))
-        self.save_report.setText(_translate("MainWindow", "ZAPISZ RAPORT"))
+        self.save_report.setText(_translate("MainWindow", "Zapisz raport w PDF"))
         self.title_view_training_page.setText(_translate("MainWindow", "PODGLĄD TRENINGU"))
         self.title_training.setText(_translate("MainWindow", "*****"))
         self.prev_training_button.setText(_translate("MainWindow", "<-"))
@@ -1349,6 +1311,6 @@ class Ui_MainWindow(object):
         self.training_desc_label.setText(_translate("MainWindow", "Opis treningu"))
         self.move_to_add_exercises_button.setText(_translate("MainWindow", "+"))
         self.title_list.setText(_translate("MainWindow", "LISTA PODOPIECZNYCH"))
-        self.add_trainee_list_button.setText(_translate("MainWindow", "+ Dodaj nowego podopiecznego"))
+        self.add_trainee_list_button.setText(_translate("MainWindow", "+ DODAJ PODOPIECZNEGO"))
         self.delete_trainee_button.setText(_translate("MainWindow", u"Usu\u0144 podopiecznego"))
         self.label_2.setText(_translate("MainWindow", "trainerAdvisor."))

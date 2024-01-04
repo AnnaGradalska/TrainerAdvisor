@@ -15,11 +15,16 @@ class ListOfTraineesController:
 
     def refresh_list_trainees(self, db_manager):
         self.model.removeRows(0, self.model.rowCount())
-        self.table_of_trainees = self.trainee.select_all(db_manager)
+        result = self.trainee.select_all(db_manager)
+
+        if not result:
+            return False
+        self.table_of_trainees = result
 
         for record in self.table_of_trainees:
             item = QStandardItem(" ".join((record[1], record[2])))
             self.model.appendRow(item)
 
         self.ui.list_of_trainees.setModel(self.model)
+
         return self.table_of_trainees

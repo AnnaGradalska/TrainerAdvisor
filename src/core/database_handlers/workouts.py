@@ -32,7 +32,11 @@ class Workouts:
             'wor_training_start_date': self.training_start_date,
             'wor_description': self.description
         }
-        self.id = db_manager.add_data(self.TABLE_NAME, values)
+
+        result = db_manager.add_data(self.TABLE_NAME, values)
+        if not result:
+            return False
+        self.id = result
         return self.id
 
     def delete_workout_from_db(self, db_manager):
@@ -64,7 +68,10 @@ class Workouts:
                  Each tuple represents a row in the 'workouts' table.
                  Returns an empty list if no data is found.
         """
-        return db_manager.get_data(Workouts.TABLE_NAME, "wor_id", id)
+        result = db_manager.get_data(Workouts.TABLE_NAME, "wor_id", id)
+        if not result:
+            return False
+        return result
 
 
     def get_workouts_for_trainee_from_db(self, trainee_id):
@@ -72,8 +79,13 @@ class Workouts:
         db_manager = DatabaseManager()
         print("in worouts")
         result = db_manager.select_all_for_id("wor_id", Workouts.TABLE_NAME, "wor_tra_id", trainee_id)
+        if not result:
+            return False
         print(result)
         return result
 
     def select_all(self, db_manager):
-        return db_manager.select_all(self.TABLE_NAME)
+        result = db_manager.select_all(self.TABLE_NAME)
+        if not result:
+            return False
+        return result

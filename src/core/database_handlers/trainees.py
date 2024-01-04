@@ -1,4 +1,4 @@
-from src.core.workouts import Workouts
+from src.core.database_handlers.workouts import Workouts
 
 
 class Trainees:
@@ -47,8 +47,12 @@ class Trainees:
             'tra_benchpress': self.benchpress,
             'tra_squat': self.squat
         }
+        result = db_manager.add_data(self.TABLE_NAME, values)
+        if not result:
+            return False
 
-        self.id = db_manager.add_data(self.TABLE_NAME, values)
+        self.id = result
+        return True
 
     def delete_trainee_from_db(self, db_manager):
         """
@@ -58,23 +62,29 @@ class Trainees:
         """
         db_manager.delete_data(self.TABLE_NAME, self.id)
 
-    def get_trainee_from_db(self, db_manager):
-        """
-        Retrieve trainee data from the database.
-
-        :param db_manager: DatabaseManager object for handling database operations.
-        :return: A list of tuples containing the retrieved trainee data.
-                 Each tuple represents a row in the 'trainees' table.
-                 Returns an empty list if no data is found.
-        """
-        return db_manager.get_data(self.TABLE_NAME, "tra_id", self.id)
+    # def get_trainee_from_db(self, db_manager):
+    #     """
+    #     Retrieve trainee data from the database.
+    #
+    #     :param db_manager: DatabaseManager object for handling database operations.
+    #     :return: A list of tuples containing the retrieved trainee data.
+    #              Each tuple represents a row in the 'trainees' table.
+    #              Returns an empty list if no data is found.
+    #     """
+    #     return db_manager.get_data(self.TABLE_NAME, "tra_id", self.id)
 
     def select_all(self, db_manager):
-        return db_manager.select_all(self.TABLE_NAME)
+        result = db_manager.select_all(Trainees.TABLE_NAME)
+        if not result:
+            return False
+        return result
 
 # przemyśleć jak tworzyć w inny sposób instację i db_manager
     def select_all_trainings(self, db_manager):
         print("in trainnes")
         print(self.id)
         workout = Workouts("tra_id", "name", "training_start_date", "description=None")
-        return workout.get_workouts_for_trainee_from_db(self.id)
+        result = workout.get_workouts_for_trainee_from_db(self.id)
+        if not result:
+            return False
+        return result

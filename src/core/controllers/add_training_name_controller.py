@@ -1,12 +1,9 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5.QtWidgets import QMessageBox
 
 
 class AddTrainingNameController:
     def __init__(self, ui):
         self.ui = ui
-
 
     def set_trainees_checkbox(self, trainees, trainee):
         for person in trainees:
@@ -26,7 +23,6 @@ class AddTrainingNameController:
             self.show_popup("Nieprawidłowe dane!")
             return True
         return False
-
 
     @staticmethod
     def show_popup(message):

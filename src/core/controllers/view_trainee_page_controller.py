@@ -1,5 +1,17 @@
 class ViewTraineePageController:
+    """
+    Klasa kontrolera obsługująca interakcje związane z widokiem strony szkoleniowej.
+
+    Attributes:
+        ui: Obiekt interfejsu użytkownika, prawdopodobnie związany z widokiem strony szkoleniowej.
+    """
     def __init__(self, ui):
+        """
+        Konstruktor klasy ViewTraineePageController.
+
+        Args:
+            ui: Obiekt interfejsu użytkownika.
+        """
         self.ui = ui
 
     def open_view_trainee_page(self):
@@ -16,8 +28,7 @@ class ViewTraineePageController:
         self.ui.benchpress_dblabel.setText(str(trainee.benchpress))
         self.ui.deadlift_dblabel.setText(str(trainee.deadlift))
 
-    def delete_trainee(self, db_manager):
-        self.trainee.delete_trainee_from_db(self.db_manager)
-        print("usunięto")
-        self.list_of_trainees_controller.refresh_list_trainees(self.db_manager)
-        self.menu_page_controller.open_page(self.ui.main_page)
+    def delete_trainee(self, db_manager, trainee, list_of_trainees_controller, menu_page_controller):
+        trainee.delete_trainee_from_db(db_manager)
+        list_of_trainees_controller.refresh_list_trainees(db_manager)
+        menu_page_controller.open_page(self.ui.main_page)

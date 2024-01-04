@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import QMessageBox
-
 from trainees import Trainees
 import re
 
@@ -9,8 +8,7 @@ class AddTraineePageController:
         self.ui = ui
 
     def add_trainee(self, db_manager):
-        print("add_trainee")
-        if (not (self.validate_data_add_trainee())):
+        if not (self.validate_data_add_trainee()):
             self.show_popup("Nieprawidłowe dane! Wypełnij formularz poprawnie.")
             return
         trainee = Trainees(self.ui.name_lineEdit.text(),
@@ -29,7 +27,9 @@ class AddTraineePageController:
                            self.ui.squat_lineEdit.text()
                            )
 
-        trainee.add_trainee_to_db(db_manager)
+        result = trainee.add_trainee_to_db(db_manager)
+        if not result:
+            return False
         print("Dodano")
         return trainee
 

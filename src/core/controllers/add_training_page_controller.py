@@ -3,9 +3,9 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QMessageBox
 import re
 
-from src.core.customized_exercises import CustomizedExercises
-from src.core.trainees import Trainees
-from src.core.workouts import Workouts
+from src.core.database_handlers.customized_exercises import CustomizedExercises
+from src.core.database_handlers.trainees import Trainees
+from src.core.database_handlers.workouts import Workouts
 
 
 class AddTrainingPageController:
@@ -48,9 +48,11 @@ class AddTrainingPageController:
             self.ui.number_of_sets_lineEdit.text(),
             self.ui.number_of_reps_lineEdit.text(),
         ]
+
         if any(not field for field in required_fields):
             self.show_popup("Nieprawidłowe dane!")
             return True
+
         if (not (re.match(r'^\d+$', self.ui.number_of_sets_lineEdit.text())
                  and re.match(r'^\d+$', self.ui.number_of_reps_lineEdit.text()))):
             self.show_popup("Nieprawidłowe dane!")
@@ -60,34 +62,48 @@ class AddTrainingPageController:
     def add_exercise(self):
         if self.validate_data_add_training_page():
             return
+
         self.list_of_exercises.append((self.ui.name_of_exercise_lineEdit.text(),
                                        self.ui.number_of_sets_lineEdit.text(),
                                        self.ui.number_of_reps_lineEdit.text(),
                                        self.ui.additional_info_editText.toPlainText()
                                        ), )
+
         exe_info = QStandardItem(" ".join((self.ui.name_of_exercise_lineEdit.text(),
                                            self.ui.number_of_sets_lineEdit.text(),
                                            self.ui.number_of_reps_lineEdit.text(),
                                            )))
+
         self.model_exercises.appendRow(exe_info)
         self.ui.exercises_list.setModel(self.model_exercises)
 
         for line_edit in self.ui.add_training_page.findChildren(QtWidgets.QLineEdit):
             line_edit.clear()
+
         self.ui.additional_info_editText.setPlainText("")
         print(self.list_of_exercises)
 
     def add_training(self, db_manager, workout):
-        wor_id = workout.add_workout_to_db(db_manager)
-        self.list_of_exercises = [(wor_id,) + exe for exe in self.list_of_exercises]
-        CustomizedExercises.add_multiple_customized_exercises_to_db(db_manager, self.list_of_exercises)
-        self.clear_data()
-        # self.ui.exercises_list.setModel(self.model_exercises)
+        result = workout.add_workout_to_db(db_manager)
 
+        if not result:
+            return False
+
+        wor_id = result
+        self.list_of_exercises = [(wor_id,) + exe for exe in self.list_of_exercises]
+
+        result = CustomizedExercises.add_multiple_customized_exercises_to_db(db_manager, self.list_of_exercises)
+
+        if not result:
+            return False
+
+        self.clear_data()
+        return True
 
     def clear_data(self):
         self.list_of_exercises = []
         self.model_exercises.clear()
+
         for line_edit in self.ui.add_training_page.findChildren(QtWidgets.QLineEdit):
             line_edit.clear()
 

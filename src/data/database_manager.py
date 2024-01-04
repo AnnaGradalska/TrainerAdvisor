@@ -1,4 +1,9 @@
 import sqlite3
+import logging
+
+from PyQt5.QtWidgets import QMessageBox
+
+logging.basicConfig(filename='example.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 class DatabaseManager:
@@ -9,80 +14,103 @@ class DatabaseManager:
         :param db_path: Path to the SQLite database file.
         """
         self.db_path = db_path
-        self.conn = sqlite3.connect(db_path)
-        self.cur = self.conn.cursor()
+        self.conn = None
+        self.cur = None
+        self.connect_and_initialize()
 
-        self.create_tables()
+    def connect_and_initialize(self):
+        try:
+            self.conn = sqlite3.connect(self.db_path)
+            self.cur = self.conn.cursor()
+            self.create_tables()
+        except sqlite3.OperationalError as e:
+            logging.exception(e)
+            raise
+        except Exception as e:
+            logging.exception(e)
+            raise
 
     def create_tables(self):
         """
         Creates tables in the SQLite database if they do not exist.
         """
-        self.cur.execute('''
-            CREATE TABLE IF NOT EXISTS trainees (
-            tra_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tra_name TEXT NOT NULL,
-            tra_surname TEXT NOT NULL,
-            tra_email TEXT NOT NULL,
-            tra_date_of_birth DATE NOT NULL,
-            tra_phone TEXT NOT NULL,
-            tra_weight INTEGER NOT NULL,
-            tra_training_start_date DATE NOT NULL,
-            tra_deadlift INTEGER NOT NULL,
-            tra_benchpress INTEGER NOT NULL,
-            tra_squat INTEGER NOT NULL
-            )
-        ''')
-
-        self.cur.execute('''
-                CREATE TABLE IF NOT EXISTS workouts (
-                wor_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                wor_tra_id INTEGER NOT NULL,
-                wor_name TEXT NOT NULL,
-                wor_training_start_date DATE NOT NULL,
-                wor_description TEXT,
-                FOREIGN KEY (wor_tra_id) REFERENCES trainee(tra_id) ON DELETE CASCADE
-            )
-        ''')
+        self.create_tables_trainees()
+        self.create_tables_workouts()
+        self.create_customized_exercises()
 
 
-        self.cur.execute('''
-            CREATE TABLE IF NOT EXISTS customized_exercises (
-                cus_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                cus_name TEXT NOT NULL,
-                cus_wor_id INTEGER NOT NULL,
-                cus_reps INTEGER NOT NULL,
-                cus_sets INTEGER NOT NULL,
-                cus_desc TEXT,
-                FOREIGN KEY (cus_wor_id) REFERENCES workouts(wor_id) ON DELETE CASCADE
-            )
-        ''')
+        # self.cur.execute('''
+        #     CREATE TABLE IF NOT EXISTS weight (
+        #         wei_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        #         wei_tra_id INTEGER NOT NULL,
+        #         wei_date DATE NOT NULL,
+        #         wei_weight INTEGER NOT NULL,
+        #         FOREIGN KEY (wei_tra_id) REFERENCES trainee(tra_id) ON DELETE CASCADE
+        #     )
+        # ''')
 
-
-        self.cur.execute('''
-            CREATE TABLE IF NOT EXISTS weight (
-                wei_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                wei_tra_id INTEGER NOT NULL,
-                wei_date DATE NOT NULL,
-                wei_weight INTEGER NOT NULL,
-                FOREIGN KEY (wei_tra_id) REFERENCES trainee(tra_id) ON DELETE CASCADE
-            )
-        ''')
-
-        self.cur.execute('''
-            CREATE TABLE IF NOT EXISTS personal_records (
-                per_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                per_tra_id INTEGER NOT NULL,
-                per_date DATE NOT NULL,
-                per_squat REAL NOT NULL,
-                per_bench_press REAL NOT NULL,
-                per_deadlift REAL NOT NULL,
-                FOREIGN KEY (per_tra_id) REFERENCES trainee(tra_id) ON DELETE CASCADE
-            )
-        ''')
-
-        self.conn.commit()
+        # self.cur.execute('''
+        #     CREATE TABLE IF NOT EXISTS personal_records (
+        #         per_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        #         per_tra_id INTEGER NOT NULL,
+        #         per_date DATE NOT NULL,
+        #         per_squat REAL NOT NULL,
+        #         per_bench_press REAL NOT NULL,
+        #         per_deadlift REAL NOT NULL,
+        #         FOREIGN KEY (per_tra_id) REFERENCES trainee(tra_id) ON DELETE CASCADE
+        #     )
+        # ''')
+        try:
+            self.conn.commit()
+        except sqlite3.Error as e:
+            logging.exception(e)
+            raise
+        except Exception as e:
+            logging.exception(e)
+            raise
         #self.conn.close()
+
+    def create_tables_trainees(self):
+        self.cur.execute('''
+                    CREATE TABLE IF NOT EXISTS trainees (
+                    tra_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tra_name TEXT NOT NULL,
+                    tra_surname TEXT NOT NULL,
+                    tra_email TEXT NOT NULL,
+                    tra_date_of_birth DATE NOT NULL,
+                    tra_phone TEXT NOT NULL,
+                    tra_weight INTEGER NOT NULL,
+                    tra_training_start_date DATE NOT NULL,
+                    tra_deadlift INTEGER NOT NULL,
+                    tra_benchpress INTEGER NOT NULL,
+                    tra_squat INTEGER NOT NULL
+                    )
+                ''')
+
+    def create_tables_workouts(self):
+        self.cur.execute('''
+                        CREATE TABLE IF NOT EXISTS workouts (
+                        wor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        wor_tra_id INTEGER NOT NULL,
+                        wor_name TEXT NOT NULL,
+                        wor_training_start_date DATE NOT NULL,
+                        wor_description TEXT,
+                        FOREIGN KEY (wor_tra_id) REFERENCES trainee(tra_id) ON DELETE CASCADE
+                    )
+                ''')
+
+    def create_customized_exercises(self):
+        self.cur.execute('''
+                    CREATE TABLE IF NOT EXISTS customized_exercises (
+                        cus_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        cus_name TEXT NOT NULL,
+                        cus_wor_id INTEGER NOT NULL,
+                        cus_reps INTEGER NOT NULL,
+                        cus_sets INTEGER NOT NULL,
+                        cus_desc TEXT,
+                        FOREIGN KEY (cus_wor_id) REFERENCES workouts(wor_id) ON DELETE CASCADE
+                    )
+                ''')
 
     def close_connection(self):
         """
@@ -102,8 +130,15 @@ class DatabaseManager:
         placeholders = ', '.join('?' * len(values))
         query = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
 
-        self.cur.execute(query, tuple(values.values()))
-        self.conn.commit()
+        try:
+            self.cur.execute(query, tuple(values.values()))
+            self.conn.commit()
+        except sqlite3.Error as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
+        except Exception as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
 
         last_row_id = self.cur.lastrowid
         print(last_row_id)
@@ -115,8 +150,17 @@ class DatabaseManager:
         query = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
 
         data_values = [tuple(data.values()) for data in values]
-        self.cur.executemany(query, data_values)
-        self.conn.commit()
+
+        try:
+            self.cur.executemany(query, data_values)
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
+        except Exception as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
 
     def delete_data(self, table_name, trainee_id):
         """
@@ -146,25 +190,54 @@ class DatabaseManager:
 
         query = f"SELECT * FROM {table_name} WHERE {name_of_field_id} IN ({placeholders})"
 
-        self.cur.execute(query, tuple(ids))
-        self.conn.commit()
+        try:
+            self.cur.execute(query, tuple(ids))
+            self.conn.commit()
+        except sqlite3.Error as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
+        except Exception as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
 
         result = self.cur.fetchall()
         return result
 
     def select_all(self, table_name):
         query = f"SELECT * FROM {table_name}"
-        self.cur.execute(query)
-        self.conn.commit()
+        try:
+            self.cur.execute(query)
+            self.conn.commit()
+        except sqlite3.Error as e:
+            DatabaseManager.show_popup(f"Nie można załadować listy podopiecznych! Błąd SQL: {e}")
+            return False
+        except Exception as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
         result = self.cur.fetchall()
         return result
 
-#idk dlaczego nie działa, select nic nie zwraca
     def select_all_for_id(self, field, table_name, criteria_field, value_of_criteria_field):
         print("in db_manager")
         query = f"SELECT {field} FROM {table_name} WHERE {criteria_field} = ?"
         print(query, (value_of_criteria_field,))
-        self.cur.execute(query, (value_of_criteria_field,))
-        self.conn.commit()
+        try:
+            self.cur.execute(query, (value_of_criteria_field,))
+            self.conn.commit()
+        except sqlite3.Error as e:
+            DatabaseManager.show_popup(f"Nie można wykonać polecenia! Błąd SQL: {e}")
+            return False
+        except Exception as e:
+            DatabaseManager.show_popup(f"Błąd SQL: {e}")
+            return False
         result = self.cur.fetchall()
         return result
+
+    @staticmethod
+    def show_popup(message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setText(message)
+        msg.setWindowTitle("Warning")
+        msg.exec_()
+

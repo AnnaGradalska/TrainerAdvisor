@@ -21,25 +21,10 @@ class CustomizedExercises:
         self.desc = desc
         self.id = None
 
-    def add_customized_exercise_to_db(self, db_manager):
-        """
-        Adds the customized exercise to the database.
-
-        :param db_manager: DatabaseManager object for handling database operations.
-        """
-        values = {
-            'cus_wor_id': self.wor_id,
-            'cus_name': self.name,
-            'cus_reps': self.reps,
-            'cus_sets': self.sets,
-            'cus_desc': self.desc
-        }
-
-        self.id = db_manager.add_data(self.TABLE_NAME, values)
-
     @staticmethod
     def add_multiple_customized_exercises_to_db(db_manager, exercises):
         values_list = []
+
         for exe in exercises:
             values = {
                 'cus_wor_id': exe[0],
@@ -49,8 +34,13 @@ class CustomizedExercises:
                 'cus_desc': exe[4]
             }
             values_list.append(values)
-        db_manager.add_multiple_data(CustomizedExercises.TABLE_NAME, values_list)
 
+        result = db_manager.add_multiple_data(CustomizedExercises.TABLE_NAME, values_list)
+
+        if not result:
+            return False
+
+        return True
 
     def delete_customized_exercise_from_db(self, db_manager):
         """
@@ -60,19 +50,11 @@ class CustomizedExercises:
         """
         db_manager.delete_data(self.TABLE_NAME, self.id)
 
-    def get_customized_exercises(self, db_manager):
-        """
-        Retrieve customized exercises data from the database.
-
-        :param db_manager: DatabaseManager object for handling database operations.
-        :return: A list of tuples containing the retrieved customized exercises data.
-                 Each tuple represents a row in the 'customized_exercises' table.
-                 Returns an empty list if no data is found.
-        """
-        return db_manager.get_data(self.TABLE_NAME, self.id)
-
     @staticmethod
     def get_customized_exercises_for_trainee(values, db_manager):
-        #db_manager = DatabaseManager()
+        result = db_manager.get_data(CustomizedExercises.TABLE_NAME, "cus_wor_id", values)
 
-        return db_manager.get_data(CustomizedExercises.TABLE_NAME, "cus_wor_id", values)
+        if not result:
+            return False
+
+        return result
