@@ -10,20 +10,15 @@ class ViewTrainingPageController:
         self.current_training_index = 0
         self.db_manager = db_manager
 
-    def open_view_training_page(self, trainee, workout):
+    def open_view_training_page(self, trainee):
         self.ui.training_table.setRowCount(0)
-        print('przechodząc na training page')
         workouts = trainee.select_all_trainings(self)
         if not workouts:
             return
         workouts = [i[0] for i in workouts]
-        print(workouts)
-        # customized_exe = CustomizedExercises("none", "none", "none", "none", "none")
         exercises = CustomizedExercises.get_customized_exercises_for_trainee(workouts, self.db_manager)
         if not exercises:
             return
-        print(exercises)
-        print(workout.select_all(self.db_manager))
 
         # Grupowanie ćwiczeń według numeru treningu
         self.grouped_exercises = {}
@@ -32,7 +27,7 @@ class ViewTrainingPageController:
             if training_number not in self.grouped_exercises:
                 self.grouped_exercises[training_number] = []
             self.grouped_exercises[training_number].append(exercise)
-        print(self.grouped_exercises)
+
 
         self.training_indexes = list(self.grouped_exercises.keys())
 
@@ -61,7 +56,7 @@ class ViewTrainingPageController:
             for column, value in enumerate(selected_values):
                 item = QTableWidgetItem(str(value))
                 self.ui.training_table.setItem(row_position, column, item)
-        print(self.current_training_index)
+
 
         workout_data = Workouts.get_workout_from_db_by_id(
             self.db_manager, self.current_training_index)
@@ -75,7 +70,6 @@ class ViewTrainingPageController:
             return True
 
     def show_next_training(self):
-        print(f"Current index {self.current_training_index}")
         if self.training_indexes:
             current_training_index = self.training_indexes.index(self.current_training_index)
             next_index = (current_training_index + 1) % len(self.training_indexes)
@@ -83,11 +77,10 @@ class ViewTrainingPageController:
             result = self.update_current_training_values()
             if not result:
                 return False
-            print(f"Current index after{self.current_training_index}")
+
             return True
 
     def show_prev_training(self):
-        print(f"Current index {self.current_training_index}")
         if self.training_indexes:
             current_training_index = self.training_indexes.index(self.current_training_index)
             prev_index = (current_training_index - 1) % len(self.training_indexes)
@@ -95,5 +88,5 @@ class ViewTrainingPageController:
             result = self.update_current_training_values()
             if not result:
                 return False
-            print(f"Current index after{self.current_training_index}")
+
             return True

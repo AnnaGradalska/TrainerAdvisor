@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMessageBox
-from trainees import Trainees
+from src.core.database_handlers.trainees import Trainees
 import re
 
 
@@ -30,7 +30,6 @@ class AddTraineePageController:
         result = trainee.add_trainee_to_db(db_manager)
         if not result:
             return False
-        print("Dodano")
         return trainee
 
     def validate_data_add_trainee(self):

@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMessageBox
 
+
 from src.core.controllers.add_training_name_controller import AddTrainingNameController
 from src.core.controllers.add_training_page_controller import AddTrainingPageController
 from src.core.controllers.generate_report_page_controller import GenerateReportPageController
@@ -8,11 +9,11 @@ from src.core.controllers.view_training_page_controller import ViewTrainingPageC
 from src.core.database_handlers.workouts import Workouts
 from src.data.database_manager import DatabaseManager
 from PyQt5.QtGui import QStandardItemModel
-from menu_page_controller import MenuPageController
-from navbar_controller import NavbarController
-from list_of_trainees_controller import ListOfTraineesController
-from add_trainee_page_controller import AddTraineePageController
-from view_trainee_page_controller import ViewTraineePageController
+from src.core.controllers.menu_page_controller import MenuPageController
+from src.core.controllers.navbar_controller import NavbarController
+from src.core.controllers.list_of_trainees_controller import ListOfTraineesController
+from src.core.controllers.add_trainee_page_controller import AddTraineePageController
+from src.core.controllers.view_trainee_page_controller import ViewTraineePageController
 
 
 class ButtonController:
@@ -59,6 +60,7 @@ class ButtonController:
         if not result:
             return False
         self.trainee = result
+        self.table_of_trainees = self.list_of_trainees_controller.refresh_list_trainees(self.db_manager)
 
     def connect_buttons(self):
         self.connect_nav_buttons()
@@ -101,7 +103,7 @@ class ButtonController:
     def connect_view_trainee_page_buttons(self):
         self.ui.add_training_trainee_button.clicked.connect(self.open_add_training_name)
         self.ui.show_training_trainee_button.clicked.connect(
-            lambda: self.view_training_page_controller.open_view_training_page(self.trainee, self.workout))
+            lambda: self.view_training_page_controller.open_view_training_page(self.trainee))
         self.ui.delete_trainee_button.clicked.connect(
             lambda: self.view_trainee_page_controller.delete_trainee(
                 self.db_manager, self.trainee, self.list_of_trainees_controller, self.menu_page_controller)
@@ -128,8 +130,7 @@ class ButtonController:
     def connect_add_trainee_page_buttons(self):
         self.map_button_event('add_trainee_button', [
             self.add_trainee_get_value,
-            lambda: self.view_trainee_page_controller.set_values_on_trainees_page(self.trainee),
-            self.view_trainee_page_controller.open_view_trainee_page
+            self.open_trainee_page
         ])
         self.ui.add_trainee_button.clicked.connect(lambda: self.handle_button_event('add_trainee_button'))
 
@@ -142,9 +143,11 @@ class ButtonController:
         self.ui.prev_photo_button.clicked.connect(self.generate_report_page_controller.prev_photo)
 
     def open_trainee_page(self):
-        selected_index = self.ui.list_of_trainees.currentIndex().row()
-        selected_trainee_data = self.table_of_trainees[selected_index]
-        self.trainee = Trainees(selected_trainee_data[1],
+        try:
+            print(self.table_of_trainees)
+            selected_index = self.ui.list_of_trainees.currentIndex().row()
+            selected_trainee_data = self.table_of_trainees[selected_index]
+            self.trainee = Trainees(selected_trainee_data[1],
                                 selected_trainee_data[2],
                                 selected_trainee_data[3],
                                 selected_trainee_data[4],
@@ -156,8 +159,10 @@ class ButtonController:
                                 selected_trainee_data[10],
                                 selected_trainee_data[0]
                                 )
-        self.view_trainee_page_controller.set_values_on_trainees_page(self.trainee)
-        self.ui.stackedWidget.setCurrentWidget(self.ui.view_trainee_page)
+            self.view_trainee_page_controller.set_values_on_trainees_page(self.trainee)
+            self.ui.stackedWidget.setCurrentWidget(self.ui.view_trainee_page)
+        except Exception as e:
+            print(e)
 
     def open_add_training_name(self):
         self.list_of_trainees_controller.refresh_list_trainees(self.db_manager)
@@ -178,7 +183,7 @@ class ButtonController:
     def add_training(self):
         if not self.add_training_page_controller.add_training(self.db_manager, self.workout):
             return
-        self.view_training_page_controller.open_view_training_page(self.trainee, self.workout)
+        self.view_training_page_controller.open_view_training_page(self.trainee)
 
     @staticmethod
     def show_popup(message):

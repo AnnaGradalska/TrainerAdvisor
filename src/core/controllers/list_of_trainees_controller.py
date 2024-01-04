@@ -1,5 +1,5 @@
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
-from trainees import Trainees
+from src.core.database_handlers.trainees import Trainees
 
 
 class ListOfTraineesController:
@@ -16,7 +16,6 @@ class ListOfTraineesController:
     def refresh_list_trainees(self, db_manager):
         self.model.removeRows(0, self.model.rowCount())
         result = self.trainee.select_all(db_manager)
-
         if not result:
             return False
         self.table_of_trainees = result

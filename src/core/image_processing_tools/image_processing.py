@@ -22,6 +22,9 @@ def process_image(images_paths, dir):
 
             try:
                 result_photo, sorted_points = draw_skeleton_algorithm(preprocess_image(img), i)
+                if len(sorted_points) == 0:
+                    return [], []
+
                 save_photo(f"{dir}/photo_report{i}.png", result_photo)
                 report_photos_paths.append(f"{dir}/photo_report{i}.png")
             except Exception as e:
@@ -50,6 +53,8 @@ def draw_skeleton_algorithm(image, index):
     roi = clear_border_objects(roi)
     cv.imshow('r', roi)
     centers, result_img_with_contours = draw_points(roi, image)
+    if len(centers) == 0:
+        return image, []
     if index == 2:
         sorted_points = sort_points_full_squat_picture(centers)
     else:
@@ -155,7 +160,9 @@ def draw_points(roi, image):
                 cX = int(M["m10"] / M["m00"]) + center_x - (roi_size2 // 2)
                 cY = int(M["m01"] / M["m00"]) + center_y - roi_size1 // 3
                 centers.append((cX, cY))
-
+    if(len(centers) == 11):
+        show_popup("Nie znaleziono wszystkich punktów. Sprawdź widoczność punktów na filmie/zdjęciu!")
+        return [], image
     # Iteracja przez punkty i rysowanie żółtych kropek na result_img_with_contours
     for point in centers:
         x, y = point[0], point[1]
@@ -181,26 +188,22 @@ def sort_points(centers):
 
 def sort_points_full_squat_picture(centers):
     sorted_points = sorted(centers, key=lambda center: center[1])
-    # Sprawdź warunek dla pierwszej paru indeksów (1, 2)
+
     if sorted_points[1][0] > sorted_points[2][0]:
         sorted_points[1], sorted_points[2] = sorted_points[2], sorted_points[1]
 
-    # Sprawdź warunek dla drugiej pary indeksów (3, 4)
     if sorted_points[3][0] > sorted_points[4][0]:
         sorted_points[3], sorted_points[4] = sorted_points[4], sorted_points[3]
 
-    # Sprawdź warunek dla trzeciej pary indeksów (10, 11)
     if sorted_points[10][0] > sorted_points[11][0]:
         sorted_points[10], sorted_points[11] = sorted_points[11], sorted_points[10]
 
     subset_to_sort = sorted_points[5:10]
 
-    # Posortuj podtablicę po pierwszej współrzędnej (x)
     subset_sorted_points = sorted(subset_to_sort, key=lambda p: p[0])
     new_order = [2, 1, 3, 0, 4]
     subset_sorted_points_reordered = [subset_sorted_points[i] for i in new_order]
 
-    # Podstaw posortowane wartości z powrotem do oryginalnej tablicy
     sorted_points[5:10] = subset_sorted_points_reordered
 
     return sorted_points
