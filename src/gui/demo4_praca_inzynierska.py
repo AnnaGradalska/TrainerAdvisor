@@ -11,7 +11,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -38,7 +37,7 @@ class Ui_MainWindow(object):
 "padding-left: 31px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/list.png);\n"
+"qproperty-icon: url(src/gui/resources/list.png);\n"
 "qproperty-iconSize: 20px;\n"
 "")
         self.list_of_trainees_navbutton.setObjectName("list_of_trainees_navbutton")
@@ -54,9 +53,26 @@ class Ui_MainWindow(object):
 "padding-left: 30px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/add_training.png);\n"
+"qproperty-icon: url(src/gui/resources/add_training.png);\n"
 "qproperty-iconSize: 25px;")
         self.add_training_navbutton.setObjectName("add_training_navbutton")
+
+        self.add_personal_records_navbutton = QtWidgets.QPushButton(self.frame_top_menus)
+        self.add_personal_records_navbutton.setGeometry(QtCore.QRect(0, 340, 191, 60))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        font.setBold(True)
+        self.add_personal_records_navbutton.setFont(font)
+        self.add_personal_records_navbutton.setStyleSheet("color: #ffffff;\n"
+                                                  "text-align: left center;\n"
+                                                  "padding-left: 30px;\n"
+                                                  "background: rgba(255, 255, 255, 0);\n"
+                                                  "border: 0px solid rgba(255, 255, 255, 0);\n"
+                                                  "qproperty-icon: url(src/gui/resources/personal_records.png);\n"
+                                                  "qproperty-iconSize: 25px;")
+        self.add_personal_records_navbutton.setObjectName("add_personal_records_navbutton")
+
         self.generate_report_navbutton = QtWidgets.QPushButton(self.frame_top_menus)
         self.generate_report_navbutton.setGeometry(QtCore.QRect(0, 280, 191, 60))
         font = QtGui.QFont()
@@ -69,7 +85,7 @@ class Ui_MainWindow(object):
 "padding-left: 34px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/report.png);\n"
+"qproperty-icon: url(src/gui/resources/report.png);\n"
 "qproperty-iconSize: 21px;\n"
 "")
         self.generate_report_navbutton.setObjectName("generate_report_navbutton")
@@ -85,7 +101,7 @@ class Ui_MainWindow(object):
 "padding-left: 30px;\n"
 "background: rgba(255, 255, 255, 0);\n"
 "border: 0px solid rgba(255, 255, 255, 0);\n"
-"qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/home.png);\n"
+"qproperty-icon: url(src/gui/resources/home.png);\n"
 "qproperty-iconSize: 20px;")
         icon = QtGui.QIcon.fromTheme("application-exit")
         self.menu_navbutton.setIcon(icon)
@@ -140,13 +156,13 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.label_3 = QtWidgets.QLabel(self.frame_3)
         self.label_3.setGeometry(QtCore.QRect(320, 20, 451, 151))
-        self.label_3.setStyleSheet("background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave1.png);")
+        self.label_3.setStyleSheet("background-image: url(src/gui/resources/wave1.png);")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.frame_3)
         self.label_4.setGeometry(QtCore.QRect(400, 10, 361, 131))
         self.label_4.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave2.png);\n"
+"background-image: url(src/gui/resources/wave2.png);\n"
 "border: 0px;")
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
@@ -181,7 +197,7 @@ class Ui_MainWindow(object):
         self.label_6.setObjectName("label_6")
         self.list_of_trainees_menu_button = QtWidgets.QPushButton(self.frame_4)
         self.list_of_trainees_menu_button.setGeometry(QtCore.QRect(220, 133, 101, 41))
-        self.list_of_trainees_menu_button.setStyleSheet("qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
+        self.list_of_trainees_menu_button.setStyleSheet("qproperty-icon: url(src/gui/resources/arrow.png);\n"
 "qproperty-iconSize: 20px;\n"
 "background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;")
@@ -218,7 +234,7 @@ class Ui_MainWindow(object):
         self.label_8.setObjectName("label_8")
         self.add_trainee_menu_button = QtWidgets.QPushButton(self.frame_5)
         self.add_trainee_menu_button.setGeometry(QtCore.QRect(220, 133, 101, 41))
-        self.add_trainee_menu_button.setStyleSheet("qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
+        self.add_trainee_menu_button.setStyleSheet("qproperty-icon: url(src/gui/resources/arrow.png);\n"
 "qproperty-iconSize: 20px;\n"
 "background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;")
@@ -257,7 +273,7 @@ class Ui_MainWindow(object):
         self.label_11.setObjectName("label_11")
         self.generate_report_menu_button = QtWidgets.QPushButton(self.frame_6)
         self.generate_report_menu_button.setGeometry(QtCore.QRect(600, 60, 101, 41))
-        self.generate_report_menu_button.setStyleSheet("qproperty-icon: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/arrow.png);\n"
+        self.generate_report_menu_button.setStyleSheet("qproperty-icon: url(src/gui/resources/arrow.png);\n"
 "qproperty-iconSize: 20px;\n"
 "background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;")
@@ -278,7 +294,7 @@ class Ui_MainWindow(object):
         self.label_13.setGeometry(QtCore.QRect(-50, 0, 501, 131))
         self.label_13.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label_13.setStyleSheet("background-color: rgba(255, 255, 255, 0);\n"
-"background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave3_1.png);\n"
+"background-image: url(src/gui/resources/wave3_1.png);\n"
 "border: 0px;")
         self.label_13.setText("")
         self.label_13.setObjectName("label_13")
@@ -357,33 +373,6 @@ class Ui_MainWindow(object):
         self.phone_label.setStyleSheet("border-bottom: 1px solid white;\n"
 "padding-bottom: 10px;")
         self.phone_label.setObjectName("phone_label")
-        self.squat_label = QtWidgets.QLabel(self.add_trainee_page)
-        self.squat_label.setGeometry(QtCore.QRect(490, 260, 161, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.squat_label.setFont(font)
-        self.squat_label.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.squat_label.setObjectName("squat_label")
-        self.benchpress_label = QtWidgets.QLabel(self.add_trainee_page)
-        self.benchpress_label.setGeometry(QtCore.QRect(490, 320, 161, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.benchpress_label.setFont(font)
-        self.benchpress_label.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.benchpress_label.setObjectName("benchpress_label")
-        self.deadlift_label = QtWidgets.QLabel(self.add_trainee_page)
-        self.deadlift_label.setGeometry(QtCore.QRect(490, 370, 161, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.deadlift_label.setFont(font)
-        self.deadlift_label.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.deadlift_label.setObjectName("deadlift_label")
         self.add_trainee_title = QtWidgets.QLabel(self.add_trainee_page)
         self.add_trainee_title.setGeometry(QtCore.QRect(70, 70, 251, 31))
         font = QtGui.QFont()
@@ -427,76 +416,6 @@ class Ui_MainWindow(object):
 "padding-left: 10px;\n"
 "padding-bottom: 5px;")
         self.phone_lineEdit.setObjectName("phone_lineEdit")
-        self.PR_title = QtWidgets.QLabel(self.add_trainee_page)
-        self.PR_title.setGeometry(QtCore.QRect(470, 200, 311, 41))
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        font.setBold(True)
-        self.PR_title.setFont(font)
-        self.PR_title.setObjectName("PR_title")
-        self.benchpress_lineEdit = QtWidgets.QLineEdit(self.add_trainee_page)
-        self.benchpress_lineEdit.setGeometry(QtCore.QRect(650, 320, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.benchpress_lineEdit.setFont(font)
-        self.benchpress_lineEdit.setStyleSheet("background: transparent;\n"
-"border: none;\n"
-"border-bottom: 1px solid white;\n"
-"color: white;\n"
-"padding-left: 10px;\n"
-"padding-bottom: 5px;")
-        self.benchpress_lineEdit.setObjectName("benchpress_lineEdit")
-        self.deadlift_lineEdit = QtWidgets.QLineEdit(self.add_trainee_page)
-        self.deadlift_lineEdit.setGeometry(QtCore.QRect(650, 370, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.deadlift_lineEdit.setFont(font)
-        self.deadlift_lineEdit.setStyleSheet("background: transparent;\n"
-"border: none;\n"
-"border-bottom: 1px solid white;\n"
-"color: white;\n"
-"padding-left: 10px;\n"
-"padding-bottom: 5px;")
-        self.deadlift_lineEdit.setObjectName("deadlift_lineEdit")
-        self.squat_lineEdit = QtWidgets.QLineEdit(self.add_trainee_page)
-        self.squat_lineEdit.setGeometry(QtCore.QRect(650, 260, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.squat_lineEdit.setFont(font)
-        self.squat_lineEdit.setStyleSheet("background: transparent;\n"
-"border: none;\n"
-"border-bottom: 1px solid white;\n"
-"color: white;\n"
-"padding-left: 10px;\n"
-"padding-bottom: 5px;")
-        self.squat_lineEdit.setObjectName("squat_lineEdit")
-        self.deadlift_kg_label = QtWidgets.QLabel(self.add_trainee_page)
-        self.deadlift_kg_label.setGeometry(QtCore.QRect(710, 260, 41, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.deadlift_kg_label.setFont(font)
-        self.deadlift_kg_label.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.deadlift_kg_label.setObjectName("deadlift_kg_label")
-        self.benchpress_kg_label = QtWidgets.QLabel(self.add_trainee_page)
-        self.benchpress_kg_label.setGeometry(QtCore.QRect(710, 320, 41, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.benchpress_kg_label.setFont(font)
-        self.benchpress_kg_label.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.benchpress_kg_label.setObjectName("benchpress_kg_label")
-        self.squat_kg_label = QtWidgets.QLabel(self.add_trainee_page)
-        self.squat_kg_label.setGeometry(QtCore.QRect(710, 370, 41, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.squat_kg_label.setFont(font)
-        self.squat_kg_label.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.squat_kg_label.setObjectName("squat_kg_label")
         self.weight_label = QtWidgets.QLabel(self.add_trainee_page)
         self.weight_label.setGeometry(QtCore.QRect(90, 400, 211, 41))
         font = QtGui.QFont()
@@ -507,7 +426,7 @@ class Ui_MainWindow(object):
 "padding-bottom: 10px;")
         self.weight_label.setObjectName("weight_label")
         self.weight_lineEdit = QtWidgets.QLineEdit(self.add_trainee_page)
-        self.weight_lineEdit.setGeometry(QtCore.QRect(300, 400, 51, 41))
+        self.weight_lineEdit.setGeometry(QtCore.QRect(300, 400, 91, 41))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.weight_lineEdit.setFont(font)
@@ -518,15 +437,13 @@ class Ui_MainWindow(object):
 "padding-left: 10px;\n"
 "padding-bottom: 5px;")
         self.weight_lineEdit.setObjectName("weight_lineEdit")
-        self.squat_kg_label_3 = QtWidgets.QLabel(self.add_trainee_page)
-        self.squat_kg_label_3.setGeometry(QtCore.QRect(350, 400, 41, 41))
+        self.weight_kg_label_2 = QtWidgets.QLabel(self.add_trainee_page)
+        self.weight_kg_label_2.setGeometry(QtCore.QRect(360, 398, 41, 41))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
-        self.squat_kg_label_3.setFont(font)
-        self.squat_kg_label_3.setStyleSheet("border-bottom: 1px solid white;\n"
-"padding-bottom: 10px;")
-        self.squat_kg_label_3.setObjectName("squat_kg_label_3")
+        self.weight_kg_label_2.setFont(font)
+        self.weight_kg_label_2.setObjectName("weight_kg_label_2")
         self.date_of_birth_dateEdit = QtWidgets.QDateEdit(self.add_trainee_page)
         self.date_of_birth_dateEdit.setGeometry(QtCore.QRect(260, 250, 131, 31))
         font = QtGui.QFont()
@@ -556,12 +473,12 @@ class Ui_MainWindow(object):
         self.add_trainee_button.setObjectName("add_trainee_button")
         self.label_7 = QtWidgets.QLabel(self.add_trainee_page)
         self.label_7.setGeometry(QtCore.QRect(340, 500, 531, 161))
-        self.label_7.setStyleSheet("background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave1.png);")
+        self.label_7.setStyleSheet("background-image: url(src/gui/resources/wave1.png);")
         self.label_7.setText("")
         self.label_7.setObjectName("label_7")
         self.label_14 = QtWidgets.QLabel(self.add_trainee_page)
         self.label_14.setGeometry(QtCore.QRect(0, 540, 491, 111))
-        self.label_14.setStyleSheet("background-image: url(D:/ProjectsPython/demo3_praca_inz/src/gui/resources/wave3_1.png);")
+        self.label_14.setStyleSheet("background-image: url(src/gui/resources/wave3_1.png);")
         self.label_14.setText("")
         self.label_14.setObjectName("label_14")
         self.name_lineEdit.raise_()
@@ -571,23 +488,12 @@ class Ui_MainWindow(object):
         self.email_label.raise_()
         self.add_start_date_training_label.raise_()
         self.phone_label.raise_()
-        self.squat_label.raise_()
-        self.benchpress_label.raise_()
-        self.deadlift_label.raise_()
         self.add_trainee_title.raise_()
         self.surname_lineEdit.raise_()
         self.email_lineEdit.raise_()
         self.phone_lineEdit.raise_()
-        self.PR_title.raise_()
-        self.benchpress_lineEdit.raise_()
-        self.deadlift_lineEdit.raise_()
-        self.squat_lineEdit.raise_()
-        self.deadlift_kg_label.raise_()
-        self.benchpress_kg_label.raise_()
-        self.squat_kg_label.raise_()
         self.weight_label.raise_()
         self.weight_lineEdit.raise_()
-        self.squat_kg_label_3.raise_()
         self.date_of_birth_dateEdit.raise_()
         self.add_start_date_training_dateEdit.raise_()
         self.label_7.raise_()
@@ -598,6 +504,7 @@ class Ui_MainWindow(object):
         self.generate_report_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
 "color: white;")
         self.generate_report_page.setObjectName("generate_report_page")
+
         self.title_generate_report_page = QtWidgets.QLabel(self.generate_report_page)
         self.title_generate_report_page.setGeometry(QtCore.QRect(70, 70, 271, 31))
         font = QtGui.QFont()
@@ -606,7 +513,7 @@ class Ui_MainWindow(object):
         self.title_generate_report_page.setFont(font)
         self.title_generate_report_page.setObjectName("title_generate_report_page")
         self.add_photos_button = QtWidgets.QPushButton(self.generate_report_page)
-        self.add_photos_button.setGeometry(QtCore.QRect(440, 190, 171, 251))
+        self.add_photos_button.setGeometry(QtCore.QRect(460, 170, 171, 271))
         font = QtGui.QFont()
         font.setPointSize(48)
         font.setBold(True)
@@ -616,7 +523,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px;")
         self.add_photos_button.setObjectName("add_photos_button")
         self.add_film_button = QtWidgets.QPushButton(self.generate_report_page)
-        self.add_film_button.setGeometry(QtCore.QRect(140, 190, 171, 251))
+        self.add_film_button.setGeometry(QtCore.QRect(170, 170, 171, 271))
         font = QtGui.QFont()
         font.setPointSize(48)
         font.setBold(True)
@@ -629,12 +536,28 @@ class Ui_MainWindow(object):
 
         self.report_page = QtWidgets.QWidget()
         self.report_page.setObjectName("report_page")
+        self.label_19 = QtWidgets.QLabel(self.generate_report_page)
+        self.label_19.setGeometry(QtCore.QRect(340, 0, 531, 195))
+        self.label_19.setStyleSheet("background-image: url(src/gui/resources/wave1_1.png);")
+        self.label_19.setText("")
+        self.label_19.setObjectName("label_19")
+        self.label_19.raise_()
+
+        self.label_22 = QtWidgets.QLabel(self.report_page)
+        self.label_22.setGeometry(QtCore.QRect(340, 490, 531, 195))
+        self.label_22.setStyleSheet("background-image: url(src/gui/resources/wave2.png);")
+        self.label_22.setText("")
+        self.label_22.setObjectName("label_22")
+        self.label_22.raise_()
+
         self.report_photo = QtWidgets.QLabel(self.report_page)
         self.report_photo.setGeometry(QtCore.QRect(20, 30, 391, 531))
         self.report_photo.setObjectName("report_photo")
         self.report_comment = QtWidgets.QPlainTextEdit(self.report_page)
         self.report_comment.setGeometry(QtCore.QRect(480, 110, 331, 421))
         self.report_comment.setObjectName("report_comment")
+        self.report_comment.setStyleSheet("font-size: 12px;\n"
+                                          "color: white;")
         self.label_15 = QtWidgets.QLabel(self.report_page)
         self.label_15.setGeometry(QtCore.QRect(490, 50, 201, 41))
         font = QtGui.QFont()
@@ -644,7 +567,7 @@ class Ui_MainWindow(object):
         self.label_15.setStyleSheet("color: white;")
         self.label_15.setObjectName("label_15")
         self.prev_photo_button = QtWidgets.QPushButton(self.report_page)
-        self.prev_photo_button.setGeometry(QtCore.QRect(180, 570, 41, 41))
+        self.prev_photo_button.setGeometry(QtCore.QRect(130, 570, 41, 41))
         font = QtGui.QFont()
         font.setBold(True)
         self.prev_photo_button.setFont(font)
@@ -654,7 +577,7 @@ class Ui_MainWindow(object):
                                              "color: white;")
         self.prev_photo_button.setObjectName("prev_photo_button")
         self.next_photo_button = QtWidgets.QPushButton(self.report_page)
-        self.next_photo_button.setGeometry(QtCore.QRect(230, 570, 41, 41))
+        self.next_photo_button.setGeometry(QtCore.QRect(180, 570, 41, 41))
         font = QtGui.QFont()
         font.setBold(True)
         self.next_photo_button.setFont(font)
@@ -679,20 +602,36 @@ class Ui_MainWindow(object):
         self.view_training_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
 "color: white;")
         self.view_training_page.setObjectName("view_training_page")
+        self.label_20 = QtWidgets.QLabel(self.view_training_page)
+        self.label_20.setGeometry(QtCore.QRect(0, 490, 521, 195))
+        self.label_20.setStyleSheet("background-image: url(src/gui/resources/wave3_1.png);")
+        self.label_20.setText("")
+        self.label_20.setObjectName("label_20")
+        self.label_20.raise_()
         self.title_view_training_page = QtWidgets.QLabel(self.view_training_page)
-        self.title_view_training_page.setGeometry(QtCore.QRect(70, 70, 301, 51))
+        self.title_view_training_page.setGeometry(QtCore.QRect(70, 70, 320, 51))
         self.title_training = QtWidgets.QLabel(self.view_training_page)
-        self.title_training.setGeometry(QtCore.QRect(70, 130, 301, 51))
+        self.title_training.setGeometry(QtCore.QRect(100, 130, 301, 51))
         font = QtGui.QFont()
         font.setPointSize(22)
         font.setBold(True)
         self.title_view_training_page.setFont(font)
         self.title_view_training_page.setObjectName("title_view_training_page")
-        font.setPointSize(12)
+        font.setPointSize(16)
         self.title_training.setFont(font)
         self.title_training.setObjectName("title_training")
+        self.save_training_button = QtWidgets.QPushButton(self.view_training_page)
+        self.save_training_button.setGeometry(QtCore.QRect(650, 570, 161, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.save_training_button.setFont(font)
+        self.save_training_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                       "border: 0px;\n"
+                                       "border-radius: 10px;\n"
+                                       "color: white;")
+        self.save_training_button.setObjectName("pushButton")
         self.training_table = QtWidgets.QTableWidget(self.view_training_page)
-        self.training_table.setGeometry(QtCore.QRect(100, 220, 628, 331))
+        self.training_table.setGeometry(QtCore.QRect(100, 190, 628, 331))
         self.training_table.setObjectName("training_table")
         self.training_table.setColumnCount(0)
         self.training_table.setRowCount(0)
@@ -700,9 +639,9 @@ class Ui_MainWindow(object):
         headers = ['Nazwa ćwiczenia', 'Serie', 'Powtórzenia', 'Opis']
         self.training_table.setColumnCount(len(headers))
         self.training_table.setHorizontalHeaderLabels(headers)
-        self.training_table.setColumnWidth(1, 110)
-        self.training_table.setColumnWidth(2, 110)
-        self.training_table.setColumnWidth(3, 200)
+        self.training_table.setColumnWidth(1, 80)
+        self.training_table.setColumnWidth(2, 80)
+        self.training_table.setColumnWidth(3, 270)
         self.training_table.setStyleSheet("""
                      QTableWidget#training_table {
                          background-color: rgba(255, 255, 255, 0);
@@ -724,13 +663,13 @@ class Ui_MainWindow(object):
 
 
         self.prev_training_button = QtWidgets.QPushButton(self.view_training_page)
-        self.prev_training_button.setGeometry(QtCore.QRect(660, 580, 41, 41))
+        self.prev_training_button.setGeometry(QtCore.QRect(610, 140, 41, 31))
         self.prev_training_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;\n"
 "border-radius: 10px;")
         self.prev_training_button.setObjectName("prev_training_button")
         self.next_training_button = QtWidgets.QPushButton(self.view_training_page)
-        self.next_training_button.setGeometry(QtCore.QRect(710, 580, 41, 41))
+        self.next_training_button.setGeometry(QtCore.QRect(660, 140, 41, 31))
         self.next_training_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;\n"
 "border-radius: 10px;")
@@ -740,6 +679,7 @@ class Ui_MainWindow(object):
         self.view_trainee_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
 "color: white;")
         self.view_trainee_page.setObjectName("view_trainee_page")
+
         self.email_label_2 = QtWidgets.QLabel(self.view_trainee_page)
         self.email_label_2.setGeometry(QtCore.QRect(80, 240, 91, 20))
         font = QtGui.QFont()
@@ -747,20 +687,6 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.email_label_2.setFont(font)
         self.email_label_2.setObjectName("email_label_2")
-        self.benchpress_label_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.benchpress_label_2.setGeometry(QtCore.QRect(500, 250, 161, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.benchpress_label_2.setFont(font)
-        self.benchpress_label_2.setObjectName("benchpress_label_2")
-        self.benchpress_kg_label_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.benchpress_kg_label_2.setGeometry(QtCore.QRect(740, 250, 41, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.benchpress_kg_label_2.setFont(font)
-        self.benchpress_kg_label_2.setObjectName("benchpress_kg_label_2")
         self.date_of_birth_label_2 = QtWidgets.QLabel(self.view_trainee_page)
         self.date_of_birth_label_2.setGeometry(QtCore.QRect(80, 180, 151, 31))
         font = QtGui.QFont()
@@ -768,13 +694,6 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.date_of_birth_label_2.setFont(font)
         self.date_of_birth_label_2.setObjectName("date_of_birth_label_2")
-        self.squat_label_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.squat_label_2.setGeometry(QtCore.QRect(500, 200, 91, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.squat_label_2.setFont(font)
-        self.squat_label_2.setObjectName("squat_label_2")
         self.phone_label_2 = QtWidgets.QLabel(self.view_trainee_page)
         self.phone_label_2.setGeometry(QtCore.QRect(80, 290, 151, 21))
         font = QtGui.QFont()
@@ -782,13 +701,6 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.phone_label_2.setFont(font)
         self.phone_label_2.setObjectName("phone_label_2")
-        self.PR_title_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.PR_title_2.setGeometry(QtCore.QRect(470, 140, 311, 41))
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        font.setBold(True)
-        self.PR_title_2.setFont(font)
-        self.PR_title_2.setObjectName("PR_title_2")
         self.weight_kg_label = QtWidgets.QLabel(self.view_trainee_page)
         self.weight_kg_label.setGeometry(QtCore.QRect(340, 340, 41, 31))
         font = QtGui.QFont()
@@ -797,7 +709,7 @@ class Ui_MainWindow(object):
         self.weight_kg_label.setFont(font)
         self.weight_kg_label.setObjectName("weight_kg_label")
         self.name_surname_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.name_surname_dblabel.setGeometry(QtCore.QRect(70, 70, 291, 31))
+        self.name_surname_dblabel.setGeometry(QtCore.QRect(70, 100, 291, 31))
         font = QtGui.QFont()
         font.setPointSize(22)
         font.setBold(True)
@@ -810,92 +722,50 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.weight_label_2.setFont(font)
         self.weight_label_2.setObjectName("weight_label_2")
-        self.squat_kg_label_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.squat_kg_label_2.setGeometry(QtCore.QRect(740, 200, 41, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.squat_kg_label_2.setFont(font)
-        self.squat_kg_label_2.setObjectName("squat_kg_label_2")
         self.add_start_date_training_label_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.add_start_date_training_label_2.setGeometry(QtCore.QRect(80, 400, 151, 51))
+        self.add_start_date_training_label_2.setGeometry(QtCore.QRect(80, 400, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         self.add_start_date_training_label_2.setFont(font)
         self.add_start_date_training_label_2.setObjectName("add_start_date_training_label_2")
-        self.deadlift_label_2 = QtWidgets.QLabel(self.view_trainee_page)
-        self.deadlift_label_2.setGeometry(QtCore.QRect(500, 300, 121, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.deadlift_label_2.setFont(font)
-        self.deadlift_label_2.setObjectName("deadlift_label_2")
         self.date_of_birth_label_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.date_of_birth_label_dblabel.setGeometry(QtCore.QRect(250, 180, 131, 31))
+        self.date_of_birth_label_dblabel.setGeometry(QtCore.QRect(260, 180, 151, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         self.date_of_birth_label_dblabel.setFont(font)
         self.date_of_birth_label_dblabel.setObjectName("date_of_birth_label_dblabel")
         self.email_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.email_dblabel.setGeometry(QtCore.QRect(250, 240, 91, 20))
+        self.email_dblabel.setGeometry(QtCore.QRect(260, 240, 220, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         self.email_dblabel.setFont(font)
         self.email_dblabel.setObjectName("email_dblabel")
         self.phone_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.phone_dblabel.setGeometry(QtCore.QRect(250, 290, 141, 21))
+        self.phone_dblabel.setGeometry(QtCore.QRect(260, 290, 141, 21))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         self.phone_dblabel.setFont(font)
         self.phone_dblabel.setObjectName("phone_dblabel")
         self.weight_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.weight_dblabel.setGeometry(QtCore.QRect(260, 340, 51, 31))
+        self.weight_dblabel.setGeometry(QtCore.QRect(260, 410, 111, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         self.weight_dblabel.setFont(font)
         self.weight_dblabel.setObjectName("weight_dblabel")
         self.start_date_training_db_label = QtWidgets.QLabel(self.view_trainee_page)
-        self.start_date_training_db_label.setGeometry(QtCore.QRect(260, 410, 111, 31))
+        self.start_date_training_db_label.setGeometry(QtCore.QRect(260, 340, 51, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
         self.start_date_training_db_label.setFont(font)
         self.start_date_training_db_label.setObjectName("start_date_training_db_label")
-        self.squat_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.squat_dblabel.setGeometry(QtCore.QRect(680, 200, 51, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.squat_dblabel.setFont(font)
-        self.squat_dblabel.setObjectName("squat_dblabel")
-        self.benchpress_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.benchpress_dblabel.setGeometry(QtCore.QRect(680, 250, 51, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.benchpress_dblabel.setFont(font)
-        self.benchpress_dblabel.setObjectName("benchpress_dblabel")
-        self.deadlift_dblabel = QtWidgets.QLabel(self.view_trainee_page)
-        self.deadlift_dblabel.setGeometry(QtCore.QRect(680, 300, 51, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.deadlift_dblabel.setFont(font)
-        self.deadlift_dblabel.setObjectName("deadlift_dblabel")
-        self.deadlift_kg_label_3 = QtWidgets.QLabel(self.view_trainee_page)
-        self.deadlift_kg_label_3.setGeometry(QtCore.QRect(740, 300, 41, 31))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        self.deadlift_kg_label_3.setFont(font)
-        self.deadlift_kg_label_3.setObjectName("deadlift_kg_label_3")
         self.add_training_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
-        self.add_training_trainee_button.setGeometry(QtCore.QRect(530, 370, 191, 41))
+        self.add_training_trainee_button.setGeometry(QtCore.QRect(530, 170, 191, 41))
         font = QtGui.QFont()
         font.setBold(True)
         self.add_training_trainee_button.setFont(font)
@@ -903,9 +773,10 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "border-radius: 10px;")
         self.add_training_trainee_button.setObjectName("add_training_trainee_button")
+
         font.setPointSize(11)
         self.render_film_button = QtWidgets.QPushButton(self.generate_report_page)
-        self.render_film_button.setGeometry(QtCore.QRect(140, 470, 191, 41))
+        self.render_film_button.setGeometry(QtCore.QRect(160, 470, 191, 41))
         self.render_film_button.setFont(font)
         self.render_film_button.setStyleSheet("QPushButton:disabled { background-color: rgba(90, 90, 90, 130);"
                                               "color: rgba(150, 150, 150, 255);"
@@ -917,11 +788,11 @@ class Ui_MainWindow(object):
 
         self.render_film_button.setObjectName("render_film_button")
         self.render_photos_button = QtWidgets.QPushButton(self.generate_report_page)
-        self.render_photos_button.setGeometry(QtCore.QRect(440, 470, 191, 41))
+        self.render_photos_button.setGeometry(QtCore.QRect(450, 470, 191, 41))
         self.render_photos_button.setFont(font)
-        self.render_photos_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
-                                              "border: 0px;\n"
-                                              "border-radius: 10px;")
+        # self.render_photos_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+        #                                       "border: 0px;\n"
+        #                                       "border-radius: 10px;")
         self.render_photos_button.setObjectName("render_photos_button")
         self.render_photos_button.setStyleSheet("QPushButton:disabled { background-color: rgba(90, 90, 90, 130);"
                                               "color: rgba(150, 150, 150, 255);"
@@ -931,7 +802,7 @@ class Ui_MainWindow(object):
                                               "border: 0px;"
                                               "border-radius: 10px; }")
         self.show_training_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
-        self.show_training_trainee_button.setGeometry(QtCore.QRect(530, 420, 191, 41))
+        self.show_training_trainee_button.setGeometry(QtCore.QRect(530, 270, 191, 41))
         font = QtGui.QFont()
         font.setBold(True)
         self.show_training_trainee_button.setFont(font)
@@ -939,11 +810,232 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "border-radius: 10px;")
         self.show_training_trainee_button.setObjectName("show_training_trainee_button")
+        self.show_personal_records_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
+        self.show_personal_records_trainee_button.setGeometry(QtCore.QRect(530, 320, 191, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.show_personal_records_trainee_button.setFont(font)
+        self.show_personal_records_trainee_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+"border: 0px;\n"
+"border-radius: 10px;")
+        self.show_personal_records_trainee_button.setObjectName("show_personal_records_trainee_button")
+
+        self.add_personal_records_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
+        self.add_personal_records_trainee_button.setGeometry(QtCore.QRect(530, 220, 191, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        self.add_personal_records_trainee_button.setFont(font)
+        self.add_personal_records_trainee_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                                                "border: 0px;\n"
+                                                                "border-radius: 10px;")
+        self.add_personal_records_trainee_button.setObjectName("add_personal_records_trainee_button")
+
+        self.label_17 = QtWidgets.QLabel(self.view_trainee_page)
+        self.label_17.setGeometry(QtCore.QRect(340, 490, 531, 195))
+        self.label_17.setStyleSheet("background-image: url(src/gui/resources/wave2.png);")
+        self.label_17.setText("")
+        self.label_17.setObjectName("label_17")
+        self.label_17.raise_()
+
         self.stackedWidget.addWidget(self.view_trainee_page)
+
+        self.add_personal_records_page = QtWidgets.QWidget()
+        self.add_personal_records_page.setObjectName("add_personal_records_page")
+        self.label_16 = QtWidgets.QLabel(self.add_personal_records_page)
+        self.label_16.setGeometry(QtCore.QRect(340, 0, 531, 195))
+        self.label_16.setStyleSheet(
+                "background-image: url(src/gui/resources/wave3_2.png);")
+        self.label_16.setText("")
+        self.label_16.setObjectName("label_16")
+        self.label_16.raise_()
+        self.date_label_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.date_label_records.setGeometry(QtCore.QRect(150, 390, 261, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.date_label_records.setFont(font)
+        self.date_label_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                              "padding-bottom: 10px;\n"
+                                              "color: white;")
+        self.date_label_records.setObjectName("date_label_records")
+        self.choose_trainee_label_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.choose_trainee_label_records.setGeometry(QtCore.QRect(150, 190, 261, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.choose_trainee_label_records.setFont(font)
+        self.choose_trainee_label_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                                        "padding-bottom: 10px;\n"
+                                                        "color: white;")
+        self.choose_trainee_label_records.setObjectName("choose_trainee_label_records")
+        self.add_personal_records_title = QtWidgets.QLabel(self.add_personal_records_page)
+        self.add_personal_records_title.setGeometry(QtCore.QRect(70, 70, 461, 31))
+        font = QtGui.QFont()
+        font.setPointSize(22)
+        font.setBold(True)
+        self.add_personal_records_title.setFont(font)
+        self.add_personal_records_title.setStyleSheet("color: white;")
+        self.add_personal_records_title.setObjectName("add_personal_records_title")
+        self.squat_records = QtWidgets.QLineEdit(self.add_personal_records_page)
+        self.squat_records.setGeometry(QtCore.QRect(400, 240, 71, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.squat_records.setFont(font)
+        self.squat_records.setStyleSheet("background: transparent;\n"
+                                         "border: none;\n"
+                                         "border-bottom: 1px solid white;\n"
+                                         "color: white;\n"
+                                         "padding-left: 10px;\n"
+                                         "padding-bottom: 5px;")
+        self.squat_records.setObjectName("squat_records")
+        self.add_personal_records_button = QtWidgets.QPushButton(self.add_personal_records_page)
+        self.add_personal_records_button.setGeometry(QtCore.QRect(610, 540, 141, 51))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        self.add_personal_records_button.setFont(font)
+        self.add_personal_records_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+                                                       "border: 0px;\n"
+                                                       "border-radius: 10px;\n"
+                                                       "color: white;")
+        self.add_personal_records_button.setObjectName("add_personal_records_button")
+        self.choose_trainee_comboBox_records = QtWidgets.QComboBox(self.add_personal_records_page)
+        self.choose_trainee_comboBox_records.setGeometry(QtCore.QRect(400, 190, 241, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.choose_trainee_comboBox_records.setFont(font)
+        self.choose_trainee_comboBox_records.setStyleSheet("background: transparent;\n"
+                                                           "border: none;\n"
+                                                           "border-bottom: 1px solid white;\n"
+                                                           "color: white;\n"
+                                                           "padding-left: 10px;\n"
+                                                           "padding-bottom: 5px;")
+        self.choose_trainee_comboBox_records.setObjectName("choose_trainee_comboBox_records")
+        self.date_records = QtWidgets.QDateEdit(self.add_personal_records_page)
+        self.date_records.setGeometry(QtCore.QRect(400, 390, 141, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.date_records.setFont(font)
+        self.date_records.setStyleSheet("background: transparent;\n"
+                                        "border: none;\n"
+                                        "border-bottom: 1px solid white;\n"
+                                        "color: white;\n"
+                                        "padding-left: 10px;\n"
+                                        "padding-bottom: 5px;")
+        self.date_records.setObjectName("date_records")
+        self.squat_title_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.squat_title_records.setGeometry(QtCore.QRect(150, 240, 261, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.squat_title_records.setFont(font)
+        self.squat_title_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                               "padding-bottom: 10px;\n"
+                                               "color: white;")
+        self.squat_title_records.setObjectName("squat_title_records")
+        self.bench_press_records = QtWidgets.QLineEdit(self.add_personal_records_page)
+        self.bench_press_records.setGeometry(QtCore.QRect(400, 290, 71, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.bench_press_records.setFont(font)
+        self.bench_press_records.setStyleSheet("background: transparent;\n"
+                                              "border: none;\n"
+                                              "border-bottom: 1px solid white;\n"
+                                              "color: white;\n"
+                                              "padding-left: 10px;\n"
+                                              "padding-bottom: 5px;")
+        self.bench_press_records.setObjectName("bench_press_records")
+        self.bench_press_title_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.bench_press_title_records.setGeometry(QtCore.QRect(150, 290, 261, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.bench_press_title_records.setFont(font)
+        self.bench_press_title_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                                      "padding-bottom: 10px;\n"
+                                                      "color: white;")
+        self.bench_press_title_records.setObjectName("bench_press_title_records")
+        self.deadlift_records = QtWidgets.QLineEdit(self.add_personal_records_page)
+        self.deadlift_records.setGeometry(QtCore.QRect(400, 340, 71, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.deadlift_records.setFont(font)
+        self.deadlift_records.setStyleSheet("background: transparent;\n"
+                                            "border: none;\n"
+                                            "border-bottom: 1px solid white;\n"
+                                            "color: white;\n"
+                                            "padding-left: 10px;\n"
+                                            "padding-bottom: 5px;")
+        self.deadlift_records.setObjectName("deadlift_records")
+        self.deadlift_title_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.deadlift_title_records.setGeometry(QtCore.QRect(150, 340, 261, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.deadlift_title_records.setFont(font)
+        self.deadlift_title_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                                  "padding-bottom: 10px;\n"
+                                                  "color: white;")
+        self.deadlift_title_records.setObjectName("deadlift_title_records")
+        self.deadlift_kg_label_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.deadlift_kg_label_records.setGeometry(QtCore.QRect(470, 240, 41, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.deadlift_kg_label_records.setFont(font)
+        self.deadlift_kg_label_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                                     "padding-bottom: 10px;\n"
+                                                     "color: white;")
+        self.deadlift_kg_label_records.setObjectName("deadlift_kg_label_records")
+        self.squat_kg_label_4 = QtWidgets.QLabel(self.add_personal_records_page)
+        self.squat_kg_label_4.setGeometry(QtCore.QRect(470, 340, 41, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.squat_kg_label_4.setFont(font)
+        self.squat_kg_label_4.setStyleSheet("border-bottom: 1px solid white;\n"
+                                            "padding-bottom: 10px;\n"
+                                            "color: white;")
+        self.squat_kg_label_4.setObjectName("squat_kg_label_4")
+        self.bench_press_kg_label_records = QtWidgets.QLabel(self.add_personal_records_page)
+        self.bench_press_kg_label_records.setGeometry(QtCore.QRect(470, 290, 41, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.bench_press_kg_label_records.setFont(font)
+        self.bench_press_kg_label_records.setStyleSheet("border-bottom: 1px solid white;\n"
+                                                       "padding-bottom: 10px;\n"
+                                                       "color: white;")
+        self.bench_press_kg_label_records.setObjectName("bench_press_kg_label_records")
+        self.date_label_records.raise_()
+        self.choose_trainee_label_records.raise_()
+        self.add_personal_records_title.raise_()
+        self.squat_records.raise_()
+        self.add_personal_records_button.raise_()
+        self.choose_trainee_comboBox_records.raise_()
+        self.date_records.raise_()
+        self.squat_title_records.raise_()
+        self.bench_press_records.raise_()
+        self.bench_press_title_records.raise_()
+        self.deadlift_records.raise_()
+        self.deadlift_title_records.raise_()
+        self.deadlift_kg_label_records.raise_()
+        self.squat_kg_label_4.raise_()
+        self.bench_press_kg_label_records.raise_()
+        self.stackedWidget.addWidget(self.add_personal_records_page)
+
+
         self.add_training_page = QtWidgets.QWidget()
         self.add_training_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
 "color: white;")
         self.add_training_page.setObjectName("add_training_page")
+        self.label_22 = QtWidgets.QLabel(self.add_training_page)
+        self.label_22.setGeometry(QtCore.QRect(0, 490, 511, 191))
+        self.label_22.setStyleSheet(
+                "background-image: url(src/gui/resources/wave1_2.png);")
+        self.label_22.setText("")
+        self.label_22.setObjectName("label_22")
+        self.label_22.raise_()
         self.title_add_trainig_page = QtWidgets.QLabel(self.add_training_page)
         self.title_add_trainig_page.setGeometry(QtCore.QRect(70, 70, 251, 31))
         font = QtGui.QFont()
@@ -1015,7 +1107,7 @@ class Ui_MainWindow(object):
 "padding-bottom: 10px;")
         self.additional_info_label.setObjectName("additional_info_label")
         self.add_training_button = QtWidgets.QPushButton(self.add_training_page)
-        self.add_training_button.setGeometry(QtCore.QRect(570, 460, 191, 41))
+        self.add_training_button.setGeometry(QtCore.QRect(570, 400, 191, 41))
         font = QtGui.QFont()
         font.setBold(True)
         self.add_training_button.setFont(font)
@@ -1024,7 +1116,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px;")
         self.add_training_button.setObjectName("add_training_button")
         self.add_next_excercise_button = QtWidgets.QPushButton(self.add_training_page)
-        self.add_next_excercise_button.setGeometry(QtCore.QRect(570, 410, 191, 41))
+        self.add_next_excercise_button.setGeometry(QtCore.QRect(570, 350, 191, 41))
         font = QtGui.QFont()
         font.setBold(True)
         self.add_next_excercise_button.setFont(font)
@@ -1032,11 +1124,13 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "border-radius: 10px;")
         self.add_next_excercise_button.setObjectName("add_next_excercise_button")
+        font = QtGui.QFont()
+        font.setPointSize(22)
         self.exercises_list = QtWidgets.QListView(self.add_training_page)
-        self.exercises_list.setGeometry(QtCore.QRect(520, 110, 256, 192))
+        self.exercises_list.setGeometry(QtCore.QRect(540, 150, 246, 162))
         self.exercises_list.setObjectName("exercises_list")
         self.additional_info_editText = QtWidgets.QPlainTextEdit(self.add_training_page)
-        self.additional_info_editText.setGeometry(QtCore.QRect(93, 360, 381, 171))
+        self.additional_info_editText.setGeometry(QtCore.QRect(93, 360, 381, 80))
         self.additional_info_editText.setObjectName("additional_info_editText")
         self.stackedWidget.addWidget(self.add_training_page)
         self.add_training_name = QtWidgets.QWidget()
@@ -1052,6 +1146,14 @@ class Ui_MainWindow(object):
         self.start_date_training_label_2.setStyleSheet("border-bottom: 1px solid white;\n"
 "padding-bottom: 10px;")
         self.start_date_training_label_2.setObjectName("start_date_training_label_2")
+
+        self.label_18 = QtWidgets.QLabel(self.add_training_name)
+        self.label_18.setGeometry(QtCore.QRect(340, 0, 531, 195))
+        self.label_18.setStyleSheet("background-image: url(src/gui/resources/wave2_1.png);")
+        self.label_18.setText("")
+        self.label_18.setObjectName("label_18")
+        self.label_18.raise_()
+
         self.name_of_training = QtWidgets.QLabel(self.add_training_name)
         self.name_of_training.setGeometry(QtCore.QRect(90, 200, 261, 41))
         font = QtGui.QFont()
@@ -1074,7 +1176,7 @@ class Ui_MainWindow(object):
 "padding-bottom: 5px;")
         self.name_of_training_lineEdit.setObjectName("name_of_training_lineEdit")
         self.add_training_title = QtWidgets.QLabel(self.add_training_name)
-        self.add_training_title.setGeometry(QtCore.QRect(70, 70, 251, 31))
+        self.add_training_title.setGeometry(QtCore.QRect(70, 70, 270, 31))
         font = QtGui.QFont()
         font.setPointSize(22)
         font.setBold(True)
@@ -1139,15 +1241,39 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.training_desc_lineEdit.setFont(font)
         self.training_desc_lineEdit.setObjectName("training_desc_lineEdit")
+
         self.stackedWidget.addWidget(self.add_training_name)
+
+        self.plot_personal_records_page = QtWidgets.QWidget()
+        self.plot_personal_records_page.setObjectName("plot_personal_records_page")
+
+        self.plot_label = QtWidgets.QLabel(self.plot_personal_records_page)
+        self.plot_label.setGeometry(QtCore.QRect(70, 50, 411, 71))
+        font = QtGui.QFont()
+        font.setPointSize(23)
+        font.setBold(True)
+        self.plot_label.setFont(font)
+        self.plot_label.setStyleSheet("color: rgb(255, 255, 255);\n"
+                                      "")
+
+        self.plot_label.setObjectName("plot_label")
+        self.stackedWidget.addWidget(self.plot_personal_records_page)
+
         self.list_of_trainees_page = QtWidgets.QWidget()
         self.list_of_trainees_page.setStyleSheet("background-color: rgba(255,255,255,0);\n"
 "color: white;")
         self.list_of_trainees_page.setObjectName("list_of_trainees_page")
+        self.label_21 = QtWidgets.QLabel(self.list_of_trainees_page)
+        self.label_21.setGeometry(QtCore.QRect(340, 0, 531, 195))
+        self.label_21.setStyleSheet("background-image: url(src/gui/resources/wave3_2.png);")
+        self.label_21.setText("")
+        self.label_21.setObjectName("label_21")
+        self.label_21.raise_()
         self.list_of_trainees = QtWidgets.QListView(self.list_of_trainees_page)
         self.list_of_trainees.setGeometry(QtCore.QRect(230, 190, 381, 281))
         self.list_of_trainees.setStyleSheet("background-color: rgb(71, 71, 71);\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"font-size: 16px;")
         self.list_of_trainees.setObjectName("list_of_trainees")
         self.title_list = QtWidgets.QLabel(self.list_of_trainees_page)
         self.title_list.setGeometry(QtCore.QRect(70, 70, 360, 41))
@@ -1159,20 +1285,26 @@ class Ui_MainWindow(object):
         self.title_list.setObjectName("title_list")
         self.refresh_button = QtWidgets.QPushButton(self.list_of_trainees_page)
         self.refresh_button.setGeometry(QtCore.QRect(560, 140, 51, 41))
-        self.refresh_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
+        self.refresh_button.setStyleSheet("qproperty-icon: url(src/gui/resources/refresh.png);\n"
+"qproperty-iconSize: 20px;\n"
+"background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;\n"
 "border-radius: 10px;")
         self.refresh_button.setText("")
         self.refresh_button.setObjectName("refresh_button")
         self.add_trainee_list_button = QtWidgets.QPushButton(self.list_of_trainees_page)
-        self.add_trainee_list_button.setGeometry(QtCore.QRect(500, 500, 221, 41))
+        self.add_trainee_list_button.setGeometry(QtCore.QRect(465, 500, 150, 41))
         self.add_trainee_list_button.setStyleSheet("background-color: rgba(30, 29, 29, 130);\n"
 "border: 0px;\n"
-"border-radius: 10px;")
+"border-radius: 10px;\n"
+"font-size: 14px;"
+"font-weight: bold;")
+
+
         self.add_trainee_list_button.setObjectName("add_trainee_list_button")
         self.delete_trainee_button = QtWidgets.QPushButton(self.view_trainee_page)
         self.delete_trainee_button.setObjectName(u"delete_trainee_button")
-        self.delete_trainee_button.setGeometry(QtCore.QRect(680, 40, 151, 41))
+        self.delete_trainee_button.setGeometry(QtCore.QRect(530, 400, 191, 41))
         self.delete_trainee_button.setStyleSheet(u"background-color: rgba(255, 0, 0, 90);\n"
                                                  "border: 0px;\n"
                                                  "border-radius: 10px;")
@@ -1209,6 +1341,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -1216,6 +1349,7 @@ class Ui_MainWindow(object):
         self.add_training_navbutton.setText(_translate("MainWindow", " Treningi"))
         self.generate_report_navbutton.setText(_translate("MainWindow", "   Raport"))
         self.menu_navbutton.setText(_translate("MainWindow", "  Menu"))
+        self.add_personal_records_navbutton.setText(_translate("MainWindow", " Rekordy"))
         self.instruction_button.setText(_translate("MainWindow", "Zobacz jak\n"
 "wykonywać zdjęcia"))
         self.label.setText(_translate("MainWindow", "Witaj,"))
@@ -1226,7 +1360,7 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "Trening"))
         self.label_10.setText(_translate("MainWindow", "Dodaj trening i przeglądaj obecne"))
         self.label_11.setText(_translate("MainWindow", "Raport"))
-        self.label_12.setText(_translate("MainWindow", "Wygeneruj raport na podstawie zdjęć i zapisz w formacie PDF."))
+        self.label_12.setText(_translate("MainWindow", "Wygeneruj raport na podstawie zdjęć i zapisz PDF."))
         self.name_lineEdit.setPlaceholderText(_translate("MainWindow", "Jan"))
         self.name_label.setText(_translate("MainWindow", "Imie"))
         self.surname_label.setText(_translate("MainWindow", "Nazwisko"))
@@ -1235,23 +1369,12 @@ class Ui_MainWindow(object):
         self.add_start_date_training_label.setText(_translate("MainWindow", "Data rozpoczęcia\n"
 "treningów"))
         self.phone_label.setText(_translate("MainWindow", "Numer telefonu"))
-        self.squat_label.setText(_translate("MainWindow", "Przysiad"))
-        self.benchpress_label.setText(_translate("MainWindow", "Wyciskanie leżąc"))
-        self.deadlift_label.setText(_translate("MainWindow", "Martwy ciąg"))
         self.add_trainee_title.setText(_translate("MainWindow", "WYPEŁNIJ DANE"))
         self.surname_lineEdit.setPlaceholderText(_translate("MainWindow", "Kowalski"))
         self.email_lineEdit.setPlaceholderText(_translate("MainWindow", "xyz@gmail.com"))
         self.phone_lineEdit.setPlaceholderText(_translate("MainWindow", "887776554"))
-        self.PR_title.setText(_translate("MainWindow", "Podaj personalne rekordy"))
-        self.benchpress_lineEdit.setPlaceholderText(_translate("MainWindow", "80"))
-        self.deadlift_lineEdit.setPlaceholderText(_translate("MainWindow", "120"))
-        self.squat_lineEdit.setPlaceholderText(_translate("MainWindow", "100"))
-        self.deadlift_kg_label.setText(_translate("MainWindow", "kg"))
-        self.benchpress_kg_label.setText(_translate("MainWindow", "kg"))
-        self.squat_kg_label.setText(_translate("MainWindow", "kg"))
         self.weight_label.setText(_translate("MainWindow", "Obecna waga"))
         self.weight_lineEdit.setPlaceholderText(_translate("MainWindow", "80"))
-        self.squat_kg_label_3.setText(_translate("MainWindow", "kg"))
         self.add_trainee_button.setText(_translate("MainWindow", "+"))
         self.title_generate_report_page.setText(_translate("MainWindow", "GENERUJ RAPORT"))
         self.add_film_button.setText(_translate("MainWindow", "+"))
@@ -1261,37 +1384,31 @@ class Ui_MainWindow(object):
         self.prev_photo_button.setText(_translate("MainWindow", "<-"))
         self.next_photo_button.setText(_translate("MainWindow", "->"))
         self.save_report.setText(_translate("MainWindow", "Zapisz raport w PDF"))
+        self.save_training_button.setText(_translate("MainWindow", "Zapisz trening w PDF"))
         self.title_view_training_page.setText(_translate("MainWindow", "PODGLĄD TRENINGU"))
         self.title_training.setText(_translate("MainWindow", "*****"))
         self.prev_training_button.setText(_translate("MainWindow", "<-"))
         self.next_training_button.setText(_translate("MainWindow", "->"))
         self.email_label_2.setText(_translate("MainWindow", "Email"))
-        self.benchpress_label_2.setText(_translate("MainWindow", "Wyciskanie leżąc"))
-        self.benchpress_kg_label_2.setText(_translate("MainWindow", "kg"))
         self.date_of_birth_label_2.setText(_translate("MainWindow", "Data urodzenia"))
-        self.squat_label_2.setText(_translate("MainWindow", "Przysiad"))
         self.phone_label_2.setText(_translate("MainWindow", "Numer telefonu"))
-        self.PR_title_2.setText(_translate("MainWindow", "Podaj personalne rekordy"))
         self.weight_kg_label.setText(_translate("MainWindow", "kg"))
+        self.weight_kg_label_2.setText(_translate("MainWindow", "kg"))
         self.name_surname_dblabel.setText(_translate("MainWindow", "*IMIE I NAZWISKO*"))
         self.weight_label_2.setText(_translate("MainWindow", "Obecna waga"))
-        self.squat_kg_label_2.setText(_translate("MainWindow", "kg"))
         self.add_start_date_training_label_2.setText(_translate("MainWindow", "Data rozpoczęcia\n"
 "treningów"))
-        self.deadlift_label_2.setText(_translate("MainWindow", "Martwy ciąg"))
         self.date_of_birth_label_dblabel.setText(_translate("MainWindow", "*DATA URODZENIA*"))
         self.email_dblabel.setText(_translate("MainWindow", "*EMAIL*"))
         self.phone_dblabel.setText(_translate("MainWindow", "*NUMER*"))
         self.weight_dblabel.setText(_translate("MainWindow", "*WAGA*"))
         self.start_date_training_db_label.setText(_translate("MainWindow", "*DATA*"))
-        self.squat_dblabel.setText(_translate("MainWindow", "*przysiad*"))
-        self.benchpress_dblabel.setText(_translate("MainWindow", "*wyciskanie*"))
-        self.deadlift_dblabel.setText(_translate("MainWindow", "*ciąg*"))
-        self.deadlift_kg_label_3.setText(_translate("MainWindow", "kg"))
         self.add_training_trainee_button.setText(_translate("MainWindow", "+ DODAJ TRENING"))
-        self.render_film_button.setText(_translate("MainWindow", "Renderuj film"))
-        self.render_photos_button.setText(_translate("MainWindow", "Renderuj zdjęcia"))
+        self.render_film_button.setText(_translate("MainWindow", "RENDERUJ FILM"))
+        self.render_photos_button.setText(_translate("MainWindow", "RENDERUJ ZDJECIA"))
         self.show_training_trainee_button.setText(_translate("MainWindow", "PODGLĄD TRENINGU"))
+        self.show_personal_records_trainee_button.setText(_translate("MainWindow", "PODGLĄD PROGRESU"))
+        self.add_personal_records_trainee_button.setText(_translate("MainWindow", "+ DODAJ PR"))
         self.title_add_trainig_page.setText(_translate("MainWindow", "WYPEŁNIJ DANE"))
         self.number_of_reps_lineEdit.setPlaceholderText(_translate("MainWindow", "6"))
         self.name_of_exercise_lineEdit.setPlaceholderText(_translate("MainWindow", "Przysiady"))
@@ -1311,6 +1428,21 @@ class Ui_MainWindow(object):
         self.training_desc_label.setText(_translate("MainWindow", "Opis treningu"))
         self.move_to_add_exercises_button.setText(_translate("MainWindow", "+"))
         self.title_list.setText(_translate("MainWindow", "LISTA PODOPIECZNYCH"))
-        self.add_trainee_list_button.setText(_translate("MainWindow", "+ DODAJ PODOPIECZNEGO"))
+        self.add_trainee_list_button.setText(_translate("MainWindow", "+ DODAJ"))
         self.delete_trainee_button.setText(_translate("MainWindow", u"Usu\u0144 podopiecznego"))
+        self.date_label_records.setText(_translate("MainWindow", "Data"))
+        self.choose_trainee_label_records.setText(_translate("MainWindow", "Wybierz podopiecznego"))
+        self.add_personal_records_title.setText(_translate("MainWindow", "PODAJ PERSONALNE REKORDY"))
+        self.squat_records.setPlaceholderText(_translate("MainWindow", "100"))
+        self.add_personal_records_button.setText(_translate("MainWindow", "+"))
+        self.choose_trainee_comboBox_records.setPlaceholderText(_translate("MainWindow", "Jan Kowalski"))
+        self.squat_title_records.setText(_translate("MainWindow", "Przysiad"))
+        self.bench_press_records.setPlaceholderText(_translate("MainWindow", "60"))
+        self.bench_press_title_records.setText(_translate("MainWindow", "Wyciskanie leżac"))
+        self.deadlift_records.setPlaceholderText(_translate("MainWindow", "150"))
+        self.deadlift_title_records.setText(_translate("MainWindow", "Martwy ciąg"))
+        self.deadlift_kg_label_records.setText(_translate("MainWindow", "kg"))
+        self.squat_kg_label_4.setText(_translate("MainWindow", "kg"))
+        self.bench_press_kg_label_records.setText(_translate("MainWindow", "kg"))
+        self.plot_label.setText(_translate("MainWindow", "Wykres z wynikami"))
         self.label_2.setText(_translate("MainWindow", "trainerAdvisor."))

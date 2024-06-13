@@ -97,6 +97,9 @@ class GenerateReportPageController:
 
         if not self.render_photos(images_paths):
             return
+
+        description = self.analyze_squat_technique()
+        self.ui.report_comment.setPlainText(description)
         self.ui.stackedWidget.setCurrentWidget(self.ui.report_page)
 
     def generate_report_photos(self):
@@ -140,20 +143,20 @@ class GenerateReportPageController:
             pdf = ReportPDF()
             pdf.set_page_layout()
             pdf.add_images(self.report_photos_paths)
-            pdf.add_report_header()
-            pdf.add_description()
+            pdf.add_report_header("Raport")
+            pdf.add_description("Opis", 100)
             print(self.ui.report_comment.toPlainText())
             pdf.add_text(self.ui.report_comment.toPlainText())
-            pdf.generate_pdf()
+            pdf.generate_pdf("Raport")
         except Exception as e:
             self.show_popup(f"Error: {e}")
 
     def analyze_squat_technique(self):
-        analysis_description = "--- Wygenerowany raport - początek ---\n"
+        analysis_description = "--- Wygenerowany raport - początek ---\n\n"
         analysis_description += analyze_squat_inclination(self.all_photos_skeleton_points)
         analysis_description += analyze_knees_position(self.all_photos_skeleton_points)
         analysis_description += analyze_squat_depth(self.all_photos_skeleton_points)
-        analysis_description += "--- Wygenerowany raport - koniec ---\n"
+        analysis_description += "\n\n--- Wygenerowany raport - koniec ---\n\n"
         return analysis_description
 
     @staticmethod

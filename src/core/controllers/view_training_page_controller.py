@@ -1,7 +1,8 @@
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem, QMessageBox
 
 from src.core.database_handlers.customized_exercises import CustomizedExercises
 from src.core.database_handlers.workouts import Workouts
+from src.core.reporting_pdf.report_pdf import ReportPDF
 
 
 class ViewTrainingPageController:
@@ -9,10 +10,12 @@ class ViewTrainingPageController:
         self.ui = ui
         self.current_training_index = 0
         self.db_manager = db_manager
+        self.grouped_exercises = {}
+        self.title_of_training = ""
 
     def open_view_training_page(self, trainee):
         self.ui.training_table.setRowCount(0)
-        workouts = trainee.select_all_trainings(self)
+        workouts = trainee.select_all_trainings(self.db_manager)
         if not workouts:
             return
         workouts = [i[0] for i in workouts]
@@ -20,8 +23,6 @@ class ViewTrainingPageController:
         if not exercises:
             return
 
-        # Grupowanie ćwiczeń według numeru treningu
-        self.grouped_exercises = {}
         for exercise in exercises:
             training_number = exercise[2]
             if training_number not in self.grouped_exercises:
@@ -60,6 +61,7 @@ class ViewTrainingPageController:
 
         workout_data = Workouts.get_workout_from_db_by_id(
             self.db_manager, self.current_training_index)
+        self.title_of_training = workout_data[0][2]
         if not workout_data:
             return False
         elif workout_data:
@@ -90,3 +92,31 @@ class ViewTrainingPageController:
                 return False
 
             return True
+
+    def save_training_to_pdf(self):
+        header = ['Nazwa ćwiczenia', 'Serie', 'Powtórzenia', 'Opis']
+
+        data = self.grouped_exercises.get(self.current_training_index)
+        table_data = []
+
+        for exercise in data:
+            table_data.append((exercise[1], exercise[3], exercise[4], exercise[5]))
+        print(table_data)
+
+        try:
+            pdf = ReportPDF()
+            pdf.set_page_layout()
+            pdf.add_report_header("Trening")
+            pdf.add_description(self.title_of_training, 10)
+            pdf.add_table(header, table_data)
+            pdf.generate_pdf("Training")
+        except Exception as e:
+            self.show_popup(f"Error: {e}")
+
+    @staticmethod
+    def show_popup(message):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setText(message)
+        msg.setWindowTitle("Warning")
+        msg.exec_()

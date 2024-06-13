@@ -53,12 +53,14 @@ def draw_skeleton_algorithm(image, index):
     roi = clear_border_objects(roi)
     cv.imshow('r', roi)
     centers, result_img_with_contours = draw_points(roi, image)
+
     if len(centers) == 0:
         return image, []
     if index == 2:
         sorted_points = sort_points_full_squat_picture(centers)
     else:
         sorted_points = sort_points(centers)
+
     draw_lines(result_img_with_contours, sorted_points)
     cv.imshow('Result Image with Contours', result_img_with_contours)
 
@@ -69,11 +71,10 @@ def highlight_orange(image):
     b, g, r = cv.split(image)
     dif_img = cv.subtract(r, b)
 
-    # Binaryzacja obrazu, aby wyostrzyć jasne punkty na ciemnym tle
     _, threshold = cv.threshold(dif_img, 100, 255, cv.THRESH_BINARY)
+
     median_filtered = cv.medianBlur(threshold, 5)
 
-    # Dylatacja i erozja
     kernel = np.ones((12, 10), np.uint8)
     kernel2 = np.ones((4, 4), np.uint8)
     dilate = cv.dilate(median_filtered, kernel, iterations=1)
@@ -83,20 +84,15 @@ def highlight_orange(image):
 
 
 def find_points(erode):
-    # Znajdowanie konturów na obrazie
     contours, _ = cv.findContours(erode, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
 
-    # Określenie minimalnej powierzchni konturu, aby uznać go za "mały"
     min_contour_area = 600
 
-    # Usuwanie dużych obszarów
     filtered_contours = [cnt for cnt in contours if cv.contourArea(cnt) < min_contour_area]
 
-    # Tworzenie maski dla filtracji konturów
     filtered_mask = np.zeros_like(erode)
     cv.drawContours(filtered_mask, filtered_contours, -1, 255, thickness=cv.FILLED)
 
-    # Filtracja obrazu
     filtered_image = cv.bitwise_and(erode, filtered_mask)
     cv.imshow('Filtered image', filtered_image)
 
@@ -142,7 +138,6 @@ def draw_points(roi, image):
     roi_size1 = 470
     roi_size2 = 200
 
-    # Filtracja i rysowanie tylko tych konturów, które są wystarczająco duże
     min_contour_area = 30
     max_contour_area = 430
     centers = []
@@ -154,19 +149,22 @@ def draw_points(roi, image):
             contour_offset = contour + [center_x - (roi_size2 // 2), center_y - roi_size1 // 3]
             cv.drawContours(result_img_with_contours, [contour_offset], -1, (0, 0, 255), 2)
 
-            # Oblicz współrzędne środka konturu na podstawie momentu zerowego(m00) oraz pierwszego rzędu dla osi X i Y
             M = cv.moments(contour)
             if M["m00"] != 0:
                 cX = int(M["m10"] / M["m00"]) + center_x - (roi_size2 // 2)
                 cY = int(M["m01"] / M["m00"]) + center_y - roi_size1 // 3
                 centers.append((cX, cY))
-    if(len(centers) == 11):
+
+    if(len(centers) != 12):
         show_popup("Nie znaleziono wszystkich punktów. Sprawdź widoczność punktów na filmie/zdjęciu!")
         return [], image
-    # Iteracja przez punkty i rysowanie żółtych kropek na result_img_with_contours
+
     for point in centers:
         x, y = point[0], point[1]
         cv.circle(result_img_with_contours, (x, y), 5, (0, 255, 255), -1)
+
+    cv.imshow("draw_points", result_img_with_contours)
+
     return centers, result_img_with_contours
 
 
@@ -210,7 +208,7 @@ def sort_points_full_squat_picture(centers):
 
 
 def draw_lines(result_img_with_contours, sorted_points):
-    # Rysowanie linii
+
     l1_direction = [3, 1, 2, 4]
     l2_direction = [0, 5, 6, 8, 10]
     l3_direction = [5, 7, 9, 11]
@@ -224,6 +222,8 @@ def draw_lines(result_img_with_contours, sorted_points):
                 (0, 255, 0), 3)
         cv.line(result_img_with_contours, sorted_points[l3_direction[i]], sorted_points[l3_direction[i + 1]],
                 (0, 255, 0), 3)
+
+    cv.imshow("With lines", result_img_with_contours)
 
 
 def save_photo(path, image):

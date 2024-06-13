@@ -1,3 +1,4 @@
+from src.core.database_handlers.personal_records import PersonalRecords
 from src.core.database_handlers.workouts import Workouts
 
 
@@ -6,17 +7,8 @@ class Trainees:
 
     def __init__(self, name, surname, email,
                  date_of_birth, phone, training_start_date,
-                 weight, deadlift, benchpress, squat, id = None):
-        """
-        Initializes the Trainees object.
+                 weight, id=None):
 
-        :param name: First name of the trainee.
-        :param surname: Last name of the trainee.
-        :param email: Email address of the trainee.
-        :param date_of_birth: Date of birth of the trainee.
-        :param phone: Phone number of the trainee.
-        :param training_start_date: Date when the training for the trainee started.
-        """
         self.name = name
         self.surname = surname
         self.email = email
@@ -24,17 +16,9 @@ class Trainees:
         self.phone = phone
         self.training_start_date = training_start_date
         self.weight = weight
-        self.deadlift = deadlift
-        self.benchpress = benchpress
-        self.squat = squat
         self.id = id
 
     def add_trainee_to_db(self, db_manager):
-        """
-        Adds the trainee to the database.
-
-        :param db_manager: DatabaseManager object for handling database operations.
-        """
         values = {
             'tra_name': self.name,
             'tra_surname': self.surname,
@@ -43,9 +27,6 @@ class Trainees:
             'tra_phone': self.phone,
             'tra_weight': self.weight,
             'tra_training_start_date': self.training_start_date,
-            'tra_deadlift': self.deadlift,
-            'tra_benchpress': self.benchpress,
-            'tra_squat': self.squat
         }
         result = db_manager.add_data(self.TABLE_NAME, values)
         if not result:
@@ -55,11 +36,6 @@ class Trainees:
         return True
 
     def delete_trainee_from_db(self, db_manager):
-        """
-        Deletes the trainee from the database.
-
-        :param db_manager: DatabaseManager object for handling database operations.
-        """
         db_manager.delete_data(self.TABLE_NAME, self.id)
 
     # def get_trainee_from_db(self, db_manager):
@@ -79,12 +55,17 @@ class Trainees:
             return False
         return result
 
-# przemyśleć jak tworzyć w inny sposób instację i db_manager
+    # przemyśleć jak tworzyć w inny sposób instację i db_manager
     def select_all_trainings(self, db_manager):
-        print("in trainnes")
-        print(self.id)
         workout = Workouts("tra_id", "name", "training_start_date", "description=None")
-        result = workout.get_workouts_for_trainee_from_db(self.id)
+        result = workout.get_workouts_for_trainee_from_db(self.id, db_manager)
+        if not result:
+            return False
+        return result
+
+    def select_all_personal_records(self, db_manager):
+        personal_records = PersonalRecords("tra_id", "squat", "bench_press", "deadlift", "date")
+        result = personal_records.get_personal_records_for_trainee_from_db(self.id, db_manager)
         if not result:
             return False
         return result

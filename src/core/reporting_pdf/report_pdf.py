@@ -21,30 +21,50 @@ class ReportPDF(FPDF):
             self.image(image_path, x_start, y_start, w=image_width, h=image_height)
             x_start += image_width
 
-    def add_report_header(self):
+    def add_report_header(self, text):
         # self.add_font('DejaVu', '', 'src/gui/resources/DejaVuSansCondensed.ttf', uni=True)
         self.set_font('')
         self.set_font('DejaVuBold', size=22)
         self.ln(10)
-        self.cell(0, 10, "Raport", 0, 1, 'C')
+        self.cell(0, 10, text, 0, 1, 'C')
 
-    def add_description(self):
-        #self.add_font('DejaVu', '', 'src/gui/resources/DejaVuSansCondensed.ttf', uni=True)
+    def add_description(self, text, padding):
+        # self.add_font('DejaVu', '', 'src/gui/resources/DejaVuSansCondensed.ttf', uni=True)
         self.set_font('')
-        self.set_font('DejaVuBold', size=14)
-        self.ln(100)
-        self.cell(0, 10, "Opis", 0, 1, 'L')
+        self.set_font('DejaVuBold', size=16)
+        self.ln(padding)
+        self.cell(0, 10, text, 0, 1, 'L')
 
     def add_text(self, text):
         self.set_font('')
         self.set_font('DejaVu', size=12)
         self.multi_cell(0, 10, text)
 
-    def generate_pdf(self):
+    def generate_pdf(self, file_name):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog  # Wyłączamy natywne okno dialogowe systemu
         # Wyświetlamy okno dialogowe
-        save_path, _ = QFileDialog.getSaveFileName(None, "Zapisz plik", "Report.pdf", "PDF files (*.pdf);;All Files (*)", options=options)
+        save_path, _ = QFileDialog.getSaveFileName(None, "Zapisz plik", f"{file_name}.pdf", "PDF files (*.pdf);;All Files (*)", options=options)
         self.output(save_path)
+
+    def add_table(self, header, data):
+        col_widths = [80, 40, 40, 100]
+        row_height = 20
+        col_count = len(col_widths)
+
+        self.set_font('')
+        self.set_font('DejaVuBold', size=14)
+
+        for h in header:
+            self.cell(col_widths[header.index(h)], row_height, h, border=1)
+        self.ln()
+
+        self.set_font('')
+        self.set_font('DejaVu', size=12)
+
+        for row in data:
+            for item in row:
+                self.cell(col_widths[row.index(item)], row_height, str(item), border=1)
+            self.ln()
 
 

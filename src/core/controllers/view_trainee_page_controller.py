@@ -24,9 +24,6 @@ class ViewTraineePageController:
         self.ui.phone_dblabel.setText(trainee.phone)
         self.ui.weight_dblabel.setText(str(trainee.weight))
         self.ui.start_date_training_db_label.setText(str(trainee.training_start_date))
-        self.ui.squat_dblabel.setText(str(trainee.squat))
-        self.ui.benchpress_dblabel.setText(str(trainee.benchpress))
-        self.ui.deadlift_dblabel.setText(str(trainee.deadlift))
 
     def delete_trainee(self, db_manager, trainee, list_of_trainees_controller, menu_page_controller):
         trainee.delete_trainee_from_db(db_manager)

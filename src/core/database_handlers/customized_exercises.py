@@ -1,19 +1,8 @@
-from src.data.database_manager import DatabaseManager
-
 
 class CustomizedExercises:
     TABLE_NAME = "customized_exercises"
 
     def __init__(self, wor_id, name, reps, sets, desc=None):
-        """
-        Initializes the CustomizedExercises object.
-
-        :param wor_id: Identifier for the workout.
-        :param reps: Number of repetitions for the customized exercise.
-        :param sets: Number of sets for the customized exercise.
-        :param desc: Optional description for the customized exercise.
-        """
-
         self.wor_id = wor_id
         self.name = name
         self.reps = reps
@@ -43,11 +32,6 @@ class CustomizedExercises:
         return True
 
     def delete_customized_exercise_from_db(self, db_manager):
-        """
-        Deletes the customized exercise from the database.
-
-        :param db_manager: DatabaseManager object for handling database operations.
-        """
         db_manager.delete_data(self.TABLE_NAME, self.id)
 
     @staticmethod

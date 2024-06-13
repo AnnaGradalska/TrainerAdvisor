@@ -27,9 +27,6 @@ class AddTrainingPageController:
                         selected_trainee_data[5],
                         selected_trainee_data[6],
                         selected_trainee_data[7],
-                        selected_trainee_data[8],
-                        selected_trainee_data[9],
-                        selected_trainee_data[10],
                         selected_trainee_data[0]
                         )
 
@@ -57,6 +54,9 @@ class AddTrainingPageController:
                  and re.match(r'^\d+$', self.ui.number_of_reps_lineEdit.text()))):
             self.show_popup("Nieprawidłowe dane!")
             return True
+        if len(self.ui.additional_info_editText.toPlainText()) > 45:
+            self.show_popup("Długośóć opisu nie może przekraczać 45 znaków!")
+            return True
         return False
 
     def add_exercise(self):
@@ -81,7 +81,6 @@ class AddTrainingPageController:
             line_edit.clear()
 
         self.ui.additional_info_editText.setPlainText("")
-        print(self.list_of_exercises)
 
     def add_training(self, db_manager, workout):
         result = workout.add_workout_to_db(db_manager)

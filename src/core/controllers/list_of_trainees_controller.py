@@ -7,8 +7,7 @@ class ListOfTraineesController:
         self.ui = ui
         self.model = QStandardItemModel()
         self.table_of_trainees = []
-        self.trainee = Trainees('name', 'surname', 'email', '2000-01-01', 999999999, 'training_start_date', 99, 99, 99,
-                                99)
+        self.trainee = Trainees('name', 'surname', 'email', '2000-01-01', 999999999, 'training_start_date', 99)
 
     def open_page(self, page):
         self.ui.stackedWidget.setCurrentWidget(page)

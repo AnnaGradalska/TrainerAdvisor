@@ -21,10 +21,7 @@ class AddTraineePageController:
                            str(self.ui.add_start_date_training_dateEdit.date().year())
                            + "-" + str(self.ui.add_start_date_training_dateEdit.date().month())
                            + "-" + str(self.ui.add_start_date_training_dateEdit.date().day()),
-                           self.ui.weight_lineEdit.text(),
-                           self.ui.deadlift_lineEdit.text(),
-                           self.ui.benchpress_lineEdit.text(),
-                           self.ui.squat_lineEdit.text()
+                           self.ui.weight_lineEdit.text()
                            )
 
         result = trainee.add_trainee_to_db(db_manager)
@@ -39,9 +36,6 @@ class AddTraineePageController:
             self.ui.email_lineEdit.text(),
             self.ui.phone_lineEdit.text(),
             self.ui.weight_lineEdit.text(),
-            self.ui.deadlift_lineEdit.text(),
-            self.ui.benchpress_lineEdit.text(),
-            self.ui.squat_lineEdit.text()
         ]
         if any(not field for field in required_fields):
             return False
